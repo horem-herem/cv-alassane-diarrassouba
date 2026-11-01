@@ -118,8 +118,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .seg { width: 56px; height: 28px; padding: 0; border: 0; background: none; }
 .seg i { display: block; height: 4px; background: rgba(255, 255, 255, .28); overflow: hidden; }
 .seg i::after { content: ""; display: block; height: 100%; background: var(--rouge); transform: scaleX(var(--a, 0)); transform-origin: left; }
-#une-pause { display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; border-radius: 3px; background: rgba(120, 120, 120, .45); }
-#une-pause svg { width: 16px; height: 16px; fill: currentColor; }
+#une-pause { padding: 4px 10px; border: 0; border-radius: 3px; background: rgba(120, 120, 120, .45); font-size: .875rem; font-weight: 600; }
 
 /* Progression de lecture et contact toujours à portée */
 .avance { position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0; height: 3px; z-index: 6; background: var(--rouge); transform: scaleX(var(--lu, 0)); transform-origin: left; pointer-events: none; }
@@ -137,7 +136,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .pile .grand { position: absolute; inset: 0 13% 13% 0; background: var(--rouge); overflow: hidden; }
 .pile .grand img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
 .pile .petit { position: absolute; width: 38%; aspect-ratio: 1; display: grid; place-items: center; background: var(--rouge); box-shadow: -14px -14px 0 rgba(0, 0, 0, .45); transition: left .7s var(--ressort), top .7s var(--ressort); }
-.pile .petit svg { width: 54%; height: 54%; fill: none; stroke: #000; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
 /* Profil */
 .affiche { padding-block: clamp(40px, 7vw, 96px); }
@@ -189,7 +187,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .univers:not(.mini) { grid-column: 1 / -1; }
 .univers { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px; align-items: stretch; padding-block: 18px; }
 .carte { display: flex; flex-direction: column; justify-content: space-between; gap: 16px; padding: 16px; background: var(--rouge); color: #000; }
-.carte svg { width: 44px; height: 44px; fill: none; stroke: #000; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .carte h3 { font-size: clamp(2.25rem, 4vw, 3rem); }
 .carte p { font-weight: 500; font-size: .9375rem; line-height: 1.35; margin-top: 6px; }
 .piste { position: relative; min-width: 0; }
@@ -201,7 +198,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .vue:hover img { transform: scale(1.04); }
 .mini.univers { grid-template-columns: minmax(0, 1fr); gap: 8px; align-content: start; }
 .mini .carte { flex-direction: row; align-items: center; justify-content: flex-start; min-height: 88px; padding: 10px 12px; }
-.mini .carte svg { flex: none; width: 34px; height: 34px; }
 .mini .carte h3 { font-size: 2rem; }
 .mini .vue { flex: 1 1 0; min-width: 0; }
 .mini .vue img { width: 100%; height: auto; max-width: 100%; aspect-ratio: 2 / 3; object-fit: cover; object-position: top; }
@@ -246,7 +242,6 @@ footer { padding-block: 20px calc(20px + env(safe-area-inset-bottom, 0px)); text
   .diapo .texte { left: 16px; width: auto; right: 20px; bottom: 56px; }
   .commandes { left: 16px; bottom: 12px; }
   .carte { flex-direction: row; align-items: center; justify-content: flex-start; padding: 10px 12px; }
-  .carte svg { flex: none; width: 34px; height: 34px; }
   .fleche { display: none; }
   .univers:not(.mini) .piste { margin-right: -20px; }
   .barre strong { display: none; }
@@ -513,17 +508,6 @@ function composerGenerique(ctx, sortie, coupes, tFinal, tFin) {
 <div class="pellicule" aria-hidden="true"></div>
 <div class="avance" aria-hidden="true"></div>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-tele" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="m8 3 4 4 4-4"/></symbol>
-  <symbol id="i-reseau" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2"/><path d="m12 16-2.6-2.6a1.8 1.8 0 0 1 2.6-2.5 1.8 1.8 0 0 1 2.6 2.5z"/></symbol>
-  <symbol id="i-photo" viewBox="0 0 24 24"><path d="M3 8h4l2-3h6l2 3h4v12H3z"/><circle cx="12" cy="13" r="3.6"/></symbol>
-  <symbol id="i-diplome" viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11.5V17c3.5 2.6 8.5 2.6 12 0v-5.5"/></symbol>
-  <symbol id="i-livre" viewBox="0 0 24 24"><path d="M12 6c-2-1.6-5-2-9-2v15c4 0 7 .4 9 2 2-1.6 5-2 9-2V4c-4 0-7 .4-9 2z"/><path d="M12 6v15"/></symbol>
-  <symbol id="i-personne" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4.5"/><path d="M3.5 21c1-5 4.300-7 8.500-7s7.500 2 8.500 7"/></symbol>
-  <symbol id="i-etoile" viewBox="0 0 24 24"><path d="m12 3 2.700 5.800 6.300.800-4.600 4.300 1.200 6.300-5.600-3.100-5.600 3.100 1.200-6.300L3 9.600l6.300-.800z"/></symbol>
-  <symbol id="i-clap" viewBox="0 0 24 24"><path d="M3 10h18v10H3z"/><path d="m3 10-.6-3.6L19.5 3l1 3.8z"/><path d="m7.5 5.6 2.2 3M13 4.4l2.2 3.2"/></symbol>
-</svg>
-
 <header class="barre">
   <div class="cadre">
     <strong aria-hidden="true">A</strong>
@@ -559,7 +543,7 @@ function composerGenerique(ctx, sortie, coupes, tFinal, tFin) {
     <div id="diapos"></div>
     <div class="commandes">
       <span id="segments" style="display:flex;gap:8px"></span>
-      <button id="une-pause" type="button" aria-label="Mettre en pause"><svg viewBox="0 0 24 24" aria-hidden="true"><path id="une-forme" d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg></button>
+      <button id="une-pause" type="button">Pause</button>
     </div>
   </section>
 
@@ -574,7 +558,7 @@ function composerGenerique(ctx, sortie, coupes, tFinal, tFin) {
     <div class="cadre">
       <div class="pile">
         <div class="grand"><img src="portrait-rouge.jpg" alt="Portrait d'Alassane Diarrassouba" width="796" height="900"></div>
-        <div class="petit"><svg aria-hidden="true"><use href="#i-clap"/></svg></div>
+        <div class="petit"></div>
       </div>
       <div>
         <h2>De la préparation à la diffusion.</h2>
@@ -597,41 +581,41 @@ function composerGenerique(ctx, sortie, coupes, tFinal, tFin) {
       <div class="fixe">
         <div class="pile" id="pile" data-pos="a">
           <div class="grand"><div class="mot" id="mot">JAFA</div></div>
-          <div class="petit"><svg aria-hidden="true"><use id="icone" href="#i-clap"/></svg></div>
+          <div class="petit"></div>
         </div>
       </div>
       <div>
         <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">Parcours</h2>
-        <article class="etape actif" data-mot="JAFA" data-icone="i-clap" data-pos="a">
+        <article class="etape actif" data-mot="JAFA" data-pos="a">
           <p class="type">Poste actuel</p>
           <h3>JAFA Entreprise</h3>
           <p class="lieu">En fonction actuellement</p>
         </article>
-        <article class="etape" data-mot="JTV" data-icone="i-tele" data-pos="c">
+        <article class="etape" data-mot="JTV" data-pos="c">
           <p class="type">Expérience</p>
           <h3>Responsable technique</h3>
           <p class="lieu">JTV, la télé autrement</p>
           <p>Planification et mise en place de l'ensemble du matériel de tournage, en coordination avec l'équipe technique. Réalisation complète des émissions, de la préparation à la diffusion.</p>
         </article>
-        <article class="etape" data-mot="Diamondock" data-icone="i-reseau" data-pos="b">
+        <article class="etape" data-mot="Diamondock" data-pos="b">
           <p class="type">Expérience</p>
           <h3>Community manager multimédia</h3>
           <p class="lieu">Diamondock</p>
           <p>Création et production de contenus visuels variés : photographie, réalisation vidéo, conception d'affiches et de visuels promotionnels. Gestion quotidienne des réseaux sociaux.</p>
         </article>
-        <article class="etape" data-mot="Indépendant" data-icone="i-photo" data-pos="c">
+        <article class="etape" data-mot="Indépendant" data-pos="c">
           <p class="type">Expérience</p>
           <h3>Indépendant</h3>
           <p class="lieu">À mon propre compte</p>
           <p>Photographe retoucheur, cadreur, monteur vidéo et infographiste.</p>
         </article>
-        <article class="etape" data-mot="BTS" data-icone="i-diplome" data-pos="b">
+        <article class="etape" data-mot="BTS" data-pos="b">
           <p class="type">Formation, 2021 à 2022</p>
           <h3>Communication visuelle</h3>
           <p class="lieu">Admissible au BTS</p>
           <p>École Supérieure Saint-Jean Marie Vianney, Yopougon.</p>
         </article>
-        <article class="etape" data-mot="Bac A2" data-icone="i-livre" data-pos="a">
+        <article class="etape" data-mot="Bac A2" data-pos="a">
           <p class="type">Formation, 2019 à 2020</p>
           <h3>Baccalauréat série A2</h3>
           <p class="lieu">Collège Nawa, Soubré</p>
@@ -728,9 +712,9 @@ function composerGenerique(ctx, sortie, coupes, tFinal, tFin) {
 <script>
 // Pour ajouter une photo : déposez-la dans realisations/ et ajoutez une ligne dans le bon univers (largeur et hauteur en pixels).
 const PROJETS = [
-  { nom: "Vidéo", ligne: "Film d'entreprise pour le Groupe JAFA, 1er Mai 2026, 2 min 13", icone: "i-clap", grand: true, photos: [],
+  { nom: "Vidéo", ligne: "Film d'entreprise pour le Groupe JAFA, 1er Mai 2026, 2 min 13", grand: true, photos: [],
     film: { src: "video-jafa.mp4", image: "video-jafa.jpg", titre: "Film d'entreprise du Groupe JAFA pour le 1er Mai 2026" } },
-  { nom: "MASA 2026", ligne: "Reportage événementiel, de la scène au public", icone: "i-photo", grand: true, photos: [
+  { nom: "MASA 2026", ligne: "Reportage événementiel, de la scène au public", grand: true, photos: [
     ["masa-02", 1400, 933, "Grande scène et public, soirée du MASA 2026"],
     ["masa-01", 1400, 933, "Le public filme le spectacle"],
     ["masa-06", 1400, 933, "Échanges entre invités pendant la soirée"],
@@ -738,7 +722,7 @@ const PROJETS = [
     ["masa-04", 1068, 1400, "Invitée dans l'espace d'accueil"],
     ["masa-05", 1046, 1400, "Invité en chemise MASA"]
   ] },
-  { nom: "Infographie", ligne: "Visuels pour les réseaux sociaux de Diamondock", icone: "i-reseau", grand: true, photos: [
+  { nom: "Infographie", ligne: "Visuels pour les réseaux sociaux de Diamondock", grand: true, photos: [
     ["affiche-01", 1080, 1080, "Visuel Diamondock, community manager"],
     ["affiche-05", 1080, 1080, "Visuel Diamondock, gestion des réseaux sociaux"],
     ["affiche-03", 1080, 1080, "Visuel Diamondock, mode week-end"],
@@ -749,11 +733,11 @@ const PROJETS = [
     ["mariage-02", 720, 1080, "Portrait des mariés"],
     ["mariage-01", 720, 1080, "Portrait de la mariée"]
   ] },
-  { nom: "Portrait", ligne: "Portraits posés", icone: "i-personne", photos: [
+  { nom: "Portrait", ligne: "Portraits posés", photos: [
     ["portrait-01", 999, 1400, "Portrait en costume vert devant un tableau"],
     ["portrait-02", 999, 1400, "Portrait en costume vert, fond sombre"]
   ] },
-  { nom: "Anniversaire", ligne: "Photos de fête", icone: "i-etoile", photos: [
+  { nom: "Anniversaire", ligne: "Photos de fête", photos: [
     ["anniversaire-01", 933, 1400, "Fête d'anniversaire, la reine du jour"],
     ["anniversaire-02", 923, 1286, "Fête d'anniversaire, moment de joie"]
   ] }
@@ -769,7 +753,6 @@ let rang = 0;
 $("#univers").innerHTML = PROJETS.map((u, i) => `
   <div class="univers${u.grand ? "" : " mini"}">
     <div class="carte">
-      ${u.icone ? `<svg aria-hidden="true"><use href="#${u.icone}"/></svg>` : ""}
       <div><h3>${u.nom}</h3><p>${u.ligne}</p></div>
     </div>
     <div class="piste">
@@ -840,13 +823,12 @@ addEventListener("scroll", () => {
 }, { passive: true });
 
 // Le bloc rouge du parcours suit l'étape au centre de l'écran
-const pile = $("#pile"), mot = $("#mot"), icone = $("#icone");
+const pile = $("#pile"), mot = $("#mot");
 const suivi = new IntersectionObserver(entrees => entrees.forEach(e => {
   if (!e.isIntersecting) return;
   $$(".etape").forEach(x => x.classList.toggle("actif", x === e.target));
   pile.dataset.pos = e.target.dataset.pos;
   mot.textContent = e.target.dataset.mot;
-  icone.setAttribute("href", "#" + e.target.dataset.icone);
 }), { rootMargin: "-48% 0px -48% 0px" });
 $$(".etape").forEach(e => suivi.observe(e));
 
@@ -899,8 +881,7 @@ new IntersectionObserver(e => { enVue = e[0].isIntersecting; }).observe($("#une"
 $$(".seg").forEach((b, i) => b.addEventListener("click", () => afficher(i)));
 $("#une-pause").addEventListener("click", e => {
   auto = !auto;
-  $("#une-forme").setAttribute("d", auto ? "M6 4h4.5v16H6zM13.5 4H18v16h-4.5z" : "M7 4v16l14-8z");
-  e.currentTarget.setAttribute("aria-label", auto ? "Mettre en pause" : "Reprendre");
+  e.currentTarget.textContent = auto ? "Pause" : "Lecture";
 });
 $("#diapos").addEventListener("click", e => {
   const b = e.target.closest("[data-photo]");
