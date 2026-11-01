@@ -196,6 +196,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .piste { position: relative; min-width: 0; }
 .bande { display: flex; gap: 8px; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none; }
 .bande::-webkit-scrollbar { display: none; }
+.film { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; }
 .vue { flex: none; display: block; padding: 0; border: 0; background: #000; overflow: hidden; }
 .vue img { display: block; width: auto; height: clamp(250px, 30vw, 360px); max-width: none; transition: transform .35s var(--ressort); }
 .vue:hover img { transform: scale(1.04); }
@@ -399,8 +400,8 @@ footer { padding-block: 20px calc(20px + env(safe-area-inset-bottom, 0px)); text
     @keyframes vue-droite { from { opacity: 0; translate: 110px 0; } }
     .mini { animation: vue-monte linear both; animation-timeline: view(); animation-range: entry calc(var(--n, 0) * 10%) cover 26%; }
     .mini .piste { animation: none; }
-    .mini:nth-child(3) { --n: 1; }
-    .mini:nth-child(4) { --n: 2; }
+    .mini:nth-child(5) { --n: 1; }
+    .mini:nth-child(6) { --n: 2; }
 
     .savoir { view-timeline-name: --savoir; }
     .metier { animation: vue-carte linear both; animation-timeline: --savoir; animation-range: entry calc(8% + var(--n) * 9%) entry calc(46% + var(--n) * 9%); }
@@ -874,13 +875,22 @@ function composerGenerique(ctx, sortie, coupes, tFinal, tFin) {
 <script>
 // Pour ajouter une photo : déposez-la dans realisations/ et ajoutez une ligne dans le bon univers (largeur et hauteur en pixels).
 const PROJETS = [
-  { nom: "MASA 2026", ligne: "Reportage événementiel, de la scène au public", icone: "i-clap", photos: [
+  { nom: "Vidéo", ligne: "Film d'entreprise pour le Groupe JAFA, 1er Mai 2026, 2 min 13", icone: "i-clap", grand: true, photos: [],
+    film: { src: "video-jafa.mp4", image: "video-jafa.jpg", titre: "Film d'entreprise du Groupe JAFA pour le 1er Mai 2026" } },
+  { nom: "MASA 2026", ligne: "Reportage événementiel, de la scène au public", icone: "i-photo", grand: true, photos: [
     ["masa-02", 1400, 933, "Grande scène et public, soirée du MASA 2026"],
     ["masa-01", 1400, 933, "Le public filme le spectacle"],
     ["masa-06", 1400, 933, "Échanges entre invités pendant la soirée"],
     ["masa-03", 933, 1400, "Invitée en tenue MASA"],
     ["masa-04", 1068, 1400, "Invitée dans l'espace d'accueil"],
     ["masa-05", 1046, 1400, "Invité en chemise MASA"]
+  ] },
+  { nom: "Infographie", ligne: "Visuels pour les réseaux sociaux de Diamondock", icone: "i-reseau", grand: true, photos: [
+    ["affiche-01", 1080, 1080, "Visuel Diamondock, community manager"],
+    ["affiche-05", 1080, 1080, "Visuel Diamondock, gestion des réseaux sociaux"],
+    ["affiche-03", 1080, 1080, "Visuel Diamondock, mode week-end"],
+    ["affiche-04", 1080, 1080, "Visuel Diamondock, début de semaine"],
+    ["affiche-02", 1080, 1080, "Visuel Diamondock, début de week-end"]
   ] },
   { nom: "Mariage", ligne: "Portraits de mariés, entre pose et naturel", icone: "i-coeur", photos: [
     ["mariage-02", 720, 1080, "Portrait des mariés"],
@@ -904,13 +914,13 @@ const calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const TOUTES = PROJETS.flatMap(u => u.photos.map(([f, l, h, titre]) => ({ src: `realisations/${f}.jpg`, l, h, titre })));
 let rang = 0;
 $("#univers").innerHTML = PROJETS.map((u, i) => `
-  <div class="univers${i ? " mini" : ""}" data-entre>
+  <div class="univers${u.grand ? "" : " mini"}" data-entre>
     <div class="carte">
       <svg aria-hidden="true"><use href="#${u.icone}"/></svg>
       <div><h3>${u.nom}</h3><p>${u.ligne}</p></div>
     </div>
     <div class="piste">
-      <div class="bande">${u.photos.map(([f, l, h, titre]) => `<button class="vue" type="button" data-i="${rang++}" aria-label="Agrandir : ${titre}"><img src="realisations/${f}.jpg" alt="${titre}" width="${l}" height="${h}" loading="lazy"></button>`).join("")}</div>
+      <div class="bande">${u.film ? `<video class="film" controls preload="none" playsinline poster="realisations/${u.film.image}" aria-label="${u.film.titre}"><source src="realisations/${u.film.src}" type="video/mp4"></video>` : ""}${u.photos.map(([f, l, h, titre]) => `<button class="vue" type="button" data-i="${rang++}" aria-label="Agrandir : ${titre}"><img src="realisations/${f}.jpg" alt="${titre}" width="${l}" height="${h}" loading="lazy"></button>`).join("")}</div>
       <button class="fleche g" type="button" aria-label="Photos précédentes" hidden>‹</button>
       <button class="fleche d" type="button" aria-label="Photos suivantes" hidden>›</button>
     </div>
