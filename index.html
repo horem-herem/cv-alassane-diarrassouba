@@ -519,7 +519,6 @@ function composerGenerique(ctx, sortie, coupes, tFinal, tFin) {
   <symbol id="i-photo" viewBox="0 0 24 24"><path d="M3 8h4l2-3h6l2 3h4v12H3z"/><circle cx="12" cy="13" r="3.6"/></symbol>
   <symbol id="i-diplome" viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11.5V17c3.5 2.6 8.5 2.6 12 0v-5.5"/></symbol>
   <symbol id="i-livre" viewBox="0 0 24 24"><path d="M12 6c-2-1.6-5-2-9-2v15c4 0 7 .4 9 2 2-1.6 5-2 9-2V4c-4 0-7 .4-9 2z"/><path d="M12 6v15"/></symbol>
-  <symbol id="i-coeur" viewBox="0 0 24 24"><path d="M12 20.5 4.2 12.6a5 5 0 0 1 7.1-7l.7.7.7-.7a5 5 0 0 1 7.1 7z"/></symbol>
   <symbol id="i-personne" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4.5"/><path d="M3.5 21c1-5 4.300-7 8.500-7s7.500 2 8.500 7"/></symbol>
   <symbol id="i-etoile" viewBox="0 0 24 24"><path d="m12 3 2.700 5.800 6.300.800-4.600 4.300 1.200 6.300-5.600-3.100-5.600 3.100 1.200-6.300L3 9.600l6.300-.800z"/></symbol>
   <symbol id="i-clap" viewBox="0 0 24 24"><path d="M3 10h18v10H3z"/><path d="m3 10-.6-3.6L19.5 3l1 3.8z"/><path d="m7.5 5.6 2.2 3M13 4.4l2.2 3.2"/></symbol>
@@ -746,7 +745,7 @@ const PROJETS = [
     ["affiche-04", 1080, 1080, "Visuel Diamondock, début de semaine"],
     ["affiche-02", 1080, 1080, "Visuel Diamondock, début de week-end"]
   ] },
-  { nom: "Mariage", ligne: "Portraits de mariés", icone: "i-coeur", photos: [
+  { nom: "Mariage", ligne: "Portraits de mariés", photos: [
     ["mariage-02", 720, 1080, "Portrait des mariés"],
     ["mariage-01", 720, 1080, "Portrait de la mariée"]
   ] },
@@ -770,7 +769,7 @@ let rang = 0;
 $("#univers").innerHTML = PROJETS.map((u, i) => `
   <div class="univers${u.grand ? "" : " mini"}">
     <div class="carte">
-      <svg aria-hidden="true"><use href="#${u.icone}"/></svg>
+      ${u.icone ? `<svg aria-hidden="true"><use href="#${u.icone}"/></svg>` : ""}
       <div><h3>${u.nom}</h3><p>${u.ligne}</p></div>
     </div>
     <div class="piste">
