@@ -278,6 +278,22 @@ footer { padding-block: 20px calc(20px + env(safe-area-inset-bottom, 0px)); text
   .bandeau:hover > div { animation-play-state: paused; }
   @keyframes ruban { to { transform: translateX(-50%); } }
 }
+
+/* Portrait en fond de l'accueil : à droite sur ordinateur pour que le nom ne couvre pas le visage */
+.barre { background: linear-gradient(180deg, rgba(0, 0, 0, .75), transparent); }
+.scene { justify-items: start; text-align: left; padding-left: max(24px, calc((100% - 1240px) / 2 + 24px)); }
+.scene > .fond { position: absolute; top: 0; right: 0; width: 56%; height: 100%; max-width: none; object-fit: cover; object-position: 50% 14%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 26%); mask-image: linear-gradient(90deg, transparent, #000 26%); }
+.scene-texte { justify-items: start; max-width: 56%; }
+.scene .mono { font-size: clamp(110px, 14vw, 190px); }
+.scene h1 { font-size: clamp(3.25rem, 8.6vw, 7rem); text-wrap: balance; }
+.scene .cta { justify-content: flex-start; }
+@media (max-width: 760px) {
+  .scene { justify-items: center; text-align: center; align-content: end; padding: 0 20px 40px; min-height: 680px; }
+  .scene > .fond { width: 100%; height: 74%; object-position: 50% 12%; -webkit-mask-image: linear-gradient(#000 62%, transparent); mask-image: linear-gradient(#000 62%, transparent); }
+  .scene-texte { justify-items: center; max-width: none; }
+  .scene .mono { display: none; }
+  .scene .cta { justify-content: center; }
+}
 </style>
 </head>
 <body>
@@ -527,6 +543,7 @@ function composerGenerique(ctx, sortie, coupes, tFinal, tFin) {
     <span class="rideau" style="--x:68%;--w:12%;--t:.56s"></span>
     <span class="rideau" style="--x:86%;--w:4%;--t:.68s"></span>
     <span class="rideau" style="--x:94%;--w:6%;--t:.74s"></span>
+    <img class="fond" src="portrait-fond.jpg" alt="Portrait d'Alassane Diarrassouba en costume bleu">
     <div class="scene-texte">
     <div class="mono" aria-hidden="true">A</div>
     <h1>Alassane Diarrassouba</h1>
