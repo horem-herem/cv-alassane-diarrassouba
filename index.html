@@ -70,9 +70,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .g-carton.final .g-nom { font-size: clamp(9rem, 26vw, 19rem); line-height: .86; color: var(--rouge); animation: g-role .6s var(--ressort) backwards; }
 #passer { position: absolute; right: calc(24px + env(safe-area-inset-right, 0px)); bottom: calc(22px + env(safe-area-inset-bottom, 0px)); padding: 10px 16px; border: 1px solid rgba(255, 255, 255, .5); border-radius: 3px; background: rgba(0, 0, 0, .55); font-weight: 600; }
 #passer:hover { background: var(--rouge); border-color: var(--rouge); }
-.g-depart { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 18px; padding-inline: 20px; text-align: center; }
-.g-depart b { font: 400 clamp(8rem, 22vw, 15rem)/.86 var(--display); color: var(--rouge); }
-.g-depart p { color: var(--doux); }
 #g-son { position: absolute; left: calc(24px + env(safe-area-inset-left, 0px)); bottom: calc(22px + env(safe-area-inset-bottom, 0px)); padding: 10px 16px; border: 1px solid rgba(255, 255, 255, .5); border-radius: 3px; background: rgba(0, 0, 0, .55); font-weight: 600; }
 #g-son:hover { background: var(--rouge); border-color: var(--rouge); }
 .fin #g-son { opacity: 0; transition: opacity .2s; }
@@ -312,13 +309,8 @@ footer { padding-block: 20px calc(20px + env(safe-area-inset-bottom, 0px)); text
   <img class="g-photo" src="realisations/masa-06.jpg" alt="">
   <div class="g-teinte" id="g-teinte" hidden></div>
   <div class="g-coupe" id="g-coupe"></div>
-  <div class="g-carton" id="g-carton" hidden><p class="g-nom" id="g-nom"></p><p class="g-role" id="g-role"></p></div>
-  <div class="g-depart" id="g-depart">
-    <b aria-hidden="true">A</b>
-    <button class="btn" id="g-lancer" type="button">Lancer le générique avec le son</button>
-    <p>10 secondes</p>
-  </div>
-  <button id="g-son" type="button" aria-pressed="false" hidden>Couper le son</button>
+  <div class="g-carton" id="g-carton"><p class="g-nom" id="g-nom"></p><p class="g-role" id="g-role"></p></div>
+  <button id="g-son" type="button" aria-pressed="false">Activer le son</button>
   <button id="passer" type="button">Passer le générique</button>
 </section>
 <script>
@@ -357,6 +349,9 @@ function composerGenerique(ctx, sortie, coupes, tFinal, tFin) {
     o.stop(t + 1);
   }
   function souffle(t, duree, de, vers, volume) {
+    const retard = ctx.currentTime - t;
+    if (retard > 0) { t += retard; duree -= retard; }
+    if (duree < .1) return;
     const n = ctx.createBufferSource(), f = ctx.createBiquadFilter(), g = ctx.createGain();
     n.buffer = bruit;
     n.loop = true;
@@ -376,25 +371,27 @@ function composerGenerique(ctx, sortie, coupes, tFinal, tFin) {
 
   // Nappe grave qui s'ouvre jusqu'au carton final
   const debut = coupes[0];
-  const filtre = ctx.createBiquadFilter(), nappe = ctx.createGain();
-  filtre.type = "lowpass";
-  filtre.frequency.setValueAtTime(130, debut);
-  filtre.frequency.exponentialRampToValueAtTime(1100, tFinal);
-  nappe.gain.setValueAtTime(.0001, debut);
-  nappe.gain.exponentialRampToValueAtTime(.16, debut + 2);
-  nappe.gain.setValueAtTime(.16, tFinal - .15);
-  nappe.gain.exponentialRampToValueAtTime(.0001, tFinal + .1);
-  filtre.connect(nappe);
-  relier(nappe);
-  [[55, -5], [55, 6], [82.41, 3]].forEach(([f, d]) => {
-    const o = ctx.createOscillator();
-    o.type = "sawtooth";
-    o.frequency.value = f;
-    o.detune.value = d;
-    o.connect(filtre);
-    o.start(debut);
-    o.stop(tFinal + .2);
-  });
+  if (tFinal - debut > 2.5) {
+    const filtre = ctx.createBiquadFilter(), nappe = ctx.createGain();
+    filtre.type = "lowpass";
+    filtre.frequency.setValueAtTime(130, debut);
+    filtre.frequency.exponentialRampToValueAtTime(1100, tFinal);
+    nappe.gain.setValueAtTime(.0001, debut);
+    nappe.gain.exponentialRampToValueAtTime(.16, debut + 2);
+    nappe.gain.setValueAtTime(.16, tFinal - .15);
+    nappe.gain.exponentialRampToValueAtTime(.0001, tFinal + .1);
+    filtre.connect(nappe);
+    relier(nappe);
+    [[55, -5], [55, 6], [82.41, 3]].forEach(([f, d]) => {
+      const o = ctx.createOscillator();
+      o.type = "sawtooth";
+      o.frequency.value = f;
+      o.detune.value = d;
+      o.connect(filtre);
+      o.start(debut);
+      o.stop(tFinal + .2);
+    });
+  }
 
   // Un coup et un trait de souffle à chaque carton, une montée avant le final
   coupes.slice(0, -1).forEach((t, i) => {
@@ -462,23 +459,34 @@ function composerGenerique(ctx, sortie, coupes, tFinal, tFin) {
   const boutonSon = document.getElementById("g-son");
   let minuteur, termine = false, son = null;
 
-  // Les navigateurs n'autorisent le son qu'après un geste : il démarre au clic sur le bouton
-  function lancerSon() {
+  const debutGenerique = performance.now();
+
+  // Les navigateurs bloquent le son avant le premier geste : l'image part seule, le son la rejoint au bon moment
+  function activerSon() {
+    if (son || termine) return;
     const Contexte = window.AudioContext || window.webkitAudioContext;
-    if (!Contexte) return null;
+    if (!Contexte) { boutonSon.hidden = true; return; }
     const ctx = new Contexte();
     ctx.resume();
     const volume = ctx.createGain(), limite = ctx.createDynamicsCompressor();
     volume.connect(limite);
     limite.connect(ctx.destination);
-    let t = ctx.currentTime + .02;
-    const coupes = CARTONS.map(c => { const debut = t; t += c.d / 1000; return debut; });
-    composerGenerique(ctx, volume, coupes, coupes[coupes.length - 1], t);
-    return {
+    const base = ctx.currentTime + .02, ecoule = (performance.now() - debutGenerique) / 1000;
+    let t = 0;
+    const coupes = CARTONS.map(c => { const d = t; t += c.d / 1000; return d; });
+    const tFinal = base + coupes[coupes.length - 1] - ecoule;
+    const restantes = coupes.filter(x => x >= ecoule - .1).map(x => base + Math.max(0, x - ecoule));
+    if (restantes.length) composerGenerique(ctx, volume, restantes, Math.max(base, tFinal), base + t - ecoule);
+    boutonSon.textContent = "Couper le son";
+    son = {
       couper(muet) { volume.gain.setTargetAtTime(muet ? 0 : 1, ctx.currentTime, .03); },
       eteindre(apres) { setTimeout(() => ctx.close(), apres); },
       fondu() { volume.gain.setTargetAtTime(0, ctx.currentTime, .1); this.eteindre(700); }
     };
+  }
+  function geste(e) {
+    if (e.key === "Escape" || e.target.closest?.("#g-son, #passer")) return;
+    activerSon();
   }
 
   function terminer(naturel) {
@@ -486,6 +494,8 @@ function composerGenerique(ctx, sortie, coupes, tFinal, tFin) {
     termine = true;
     clearTimeout(minuteur);
     removeEventListener("keydown", clavier);
+    removeEventListener("keydown", geste);
+    removeEventListener("pointerdown", geste);
     if (son) naturel ? son.eteindre(4200) : son.fondu();
     g.classList.add("rideaux", "fin");
     racine.classList.remove("attente");
@@ -508,21 +518,17 @@ function composerGenerique(ctx, sortie, coupes, tFinal, tFin) {
   }
   document.getElementById("passer").addEventListener("click", () => terminer(false));
   addEventListener("keydown", clavier);
-  document.getElementById("g-lancer").addEventListener("click", () => {
-    document.getElementById("g-depart").remove();
-    carton.hidden = false;
-    boutonSon.hidden = false;
-    son = lancerSon();
-    if (!son) boutonSon.hidden = true;
-    carte(0);
-  });
+  addEventListener("keydown", geste);
+  addEventListener("pointerdown", geste);
   boutonSon.addEventListener("click", () => {
+    if (!son) return activerSon();
     const muet = boutonSon.getAttribute("aria-pressed") !== "true";
     boutonSon.setAttribute("aria-pressed", muet);
     boutonSon.textContent = muet ? "Remettre le son" : "Couper le son";
-    son?.couper(muet);
+    son.couper(muet);
   });
-  document.getElementById("g-lancer").focus({ preventScroll: true });
+  carte(0);
+  if (navigator.userActivation?.hasBeenActive) activerSon();
 })();
 </script>
 <div class="pellicule" aria-hidden="true"></div>
