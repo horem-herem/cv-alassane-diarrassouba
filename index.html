@@ -1,0 +1,1171 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="CV portfolio d'Alassane Diarrassouba, photographe retoucheur, cadreur, monteur vidéo, infographiste et community manager à Abidjan.">
+<title>CV Alassane Diarrassouba</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Bebas+Neue&display=swap">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>
+/* Concept : le CV est une présentation de studio de streaming. Noir pur, rideaux rouges, gros titres condensés,
+   blocs rouges qui se déplacent d'une diapositive à l'autre et pellicule qui défile au bord droit. */
+:root {
+  --noir: #000;
+  --gris: #141414;
+  --ligne: #2E2E2E;
+  --blanc: #F5F5F1;
+  --doux: #B3B3B3;
+  --rouge: #E8131D;
+  --sombre: #7A0A10;
+  --display: "Bebas Neue", "Arial Narrow", Impact, sans-serif;
+  --corps: "Barlow", "Segoe UI", system-ui, sans-serif;
+  --ressort: cubic-bezier(.2, .8, .2, 1);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--noir); color: var(--blanc); font: 400 1.0625rem/1.6 var(--corps); overflow-x: clip; }
+main { overflow-x: clip; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; letter-spacing: .01em; line-height: .95; }
+a { color: inherit; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--blanc); outline-offset: 3px; }
+.cadre { max-width: 1240px; margin-inline: auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, calc(env(safe-area-inset-right, 0px) + 12px)); }
+
+/* Générique d'ouverture : cartons de crédits sur photos, puis les bandes s'écartent sur l'accueil */
+.attente { overflow: hidden; }
+.attente .scene, .attente .scene * { animation-play-state: paused !important; }
+.generique { position: fixed; inset: 0; z-index: 30; overflow: hidden; color: #fff; }
+.g-bandes { position: absolute; inset: 0; display: grid; grid-template-columns: 9fr 8fr 22fr 22fr 14fr 8fr 9fr; }
+.g-bandes i { position: relative; background: #000; }
+.g-bandes i::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, var(--rouge) 0%, var(--sombre) 45%, #000 92%); transform: scaleY(0); transform-origin: top; transition: transform .75s var(--ressort); }
+.g-bandes i:nth-child(odd) { --sens: -101%; }
+.g-bandes i:nth-child(even) { --sens: 101%; }
+.rideaux .g-bandes i:nth-child(1)::after, .rideaux .g-bandes i:nth-child(2)::after, .rideaux .g-bandes i:nth-child(6)::after, .rideaux .g-bandes i:nth-child(7)::after { transform: scaleY(1); }
+.fin .g-bandes i { animation: bande .8s var(--ressort) forwards; animation-delay: calc(var(--r) * 60ms); }
+@keyframes bande { to { transform: translateY(var(--sens)); } }
+.g-photo { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 50% 28%; opacity: 0; filter: grayscale(1) contrast(1.15) brightness(.62); }
+.g-photo.actif { opacity: 1; animation: g-zoom 1.8s linear forwards; }
+@keyframes g-zoom { from { transform: scale(1.14); } to { transform: scale(1.02); } }
+.g-teinte { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0, 0, 0, .82), rgba(120, 8, 14, .34) 60%, rgba(0, 0, 0, .5)); }
+.g-coupe { position: absolute; top: 0; bottom: 0; left: 0; width: 26%; background: var(--rouge); transform: translateX(-110%); }
+.g-coupe.joue { animation: g-coupe .42s cubic-bezier(.7, 0, .3, 1); }
+@keyframes g-coupe { to { transform: translateX(400%); } }
+.g-carton { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 8px; padding-inline: 20px; text-align: center; }
+.g-role { font: 400 clamp(1.25rem, 3vw, 2rem)/1.1 var(--display); letter-spacing: .24em; margin-right: -.24em; color: var(--rouge); text-shadow: 0 2px 12px #000; }
+.g-nom { font: 400 clamp(2.75rem, 10.5vw, 7.5rem)/1 var(--display); text-shadow: 0 4px 28px #000; }
+.g-carton.joue .g-role { animation: g-role .55s var(--ressort) backwards; }
+.g-carton.joue .g-nom { animation: g-nom .95s var(--ressort) backwards; }
+.g-carton.credit { place-content: end center; padding-bottom: max(96px, 15vh); }
+.g-carton.credit .g-role { order: -1; color: #FF5A61; text-shadow: 0 2px 10px #000, 0 0 3px #000; }
+.g-carton.credit .g-nom { font-size: clamp(2.5rem, 8vw, 6rem); }
+.g-carton.credit.joue .g-nom { animation: g-role .4s var(--ressort) backwards; }
+@keyframes g-role { from { opacity: 0; translate: 0 18px; } }
+@keyframes g-nom { from { opacity: 0; letter-spacing: .26em; filter: blur(8px); } }
+.g-carton.final .g-nom { font-size: clamp(9rem, 26vw, 19rem); line-height: .86; color: var(--rouge); animation: g-final 1.5s var(--ressort) backwards; filter: drop-shadow(0 0 40px rgba(232, 19, 29, .7)); }
+@keyframes g-final { from { opacity: 0; scale: .35; } }
+#passer { position: absolute; right: calc(24px + env(safe-area-inset-right, 0px)); bottom: calc(22px + env(safe-area-inset-bottom, 0px)); padding: 10px 16px; border: 1px solid rgba(255, 255, 255, .5); border-radius: 3px; background: rgba(0, 0, 0, .55); font-weight: 600; }
+#passer:hover { background: var(--rouge); border-color: var(--rouge); }
+.g-depart { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 18px; padding-inline: 20px; text-align: center; }
+.g-depart b { font: 400 clamp(8rem, 22vw, 15rem)/.86 var(--display); color: var(--rouge); filter: drop-shadow(0 0 34px rgba(232, 19, 29, .6)); }
+.g-depart p { color: var(--doux); }
+#g-son { position: absolute; left: calc(24px + env(safe-area-inset-left, 0px)); bottom: calc(22px + env(safe-area-inset-bottom, 0px)); padding: 10px 16px; border: 1px solid rgba(255, 255, 255, .5); border-radius: 3px; background: rgba(0, 0, 0, .55); font-weight: 600; }
+#g-son:hover { background: var(--rouge); border-color: var(--rouge); }
+.fin #g-son { opacity: 0; transition: opacity .2s; }
+.fin .g-photo, .fin .g-teinte, .fin .g-carton, .fin #passer { opacity: 0; transition: opacity .2s; }
+
+/* Pellicule au bord droit, elle avance avec le défilement */
+.pellicule { position: fixed; top: 0; bottom: 0; right: 0; width: 14px; z-index: 5; background-image: linear-gradient(var(--sombre) 0 58%, transparent 58%); background-size: 8px 24px; background-position: 3px var(--film, 0); background-repeat: repeat-y; pointer-events: none; }
+
+/* Barre */
+.barre { position: absolute; top: env(safe-area-inset-top, 0px); left: 0; right: 0; z-index: 3; }
+.barre .cadre { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 24px; padding-block: 16px; }
+.barre strong { font: 400 1.75rem/1 var(--display); color: var(--rouge); }
+.barre nav { display: flex; gap: 20px; }
+.barre nav a { text-decoration: none; font-weight: 500; font-size: 1rem; }
+.barre nav a:hover { color: var(--rouge); }
+
+/* Scène d'ouverture */
+.scene { position: relative; overflow: hidden; display: grid; justify-items: center; align-content: center; text-align: center; gap: 6px; padding: 104px 24px 72px; min-height: min(100svh, 760px); }
+.rideau { position: absolute; top: 0; bottom: 0; left: var(--x); width: var(--w); background: linear-gradient(180deg, var(--rouge) 0%, var(--sombre) 42%, #000 92%); transform-origin: top; animation: tombe 1.1s var(--ressort) backwards; animation-delay: var(--t); }
+@keyframes tombe { from { transform: scaleY(0); } }
+.scene > :not(.rideau) { position: relative; }
+.mono { font: 400 clamp(150px, 24vw, 280px)/.86 var(--display); background: linear-gradient(112deg, var(--sombre) 12%, var(--rouge) 46%, #FF2E38 100%); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 18px 30px rgba(0, 0, 0, .75)); }
+.scene h1 { font-size: clamp(3.25rem, 10.5vw, 7.5rem); text-shadow: 0 4px 24px #000; }
+.scene .sous { font: 400 clamp(1.25rem, 2.6vw, 1.75rem)/1.1 var(--display); color: var(--rouge); letter-spacing: .06em; text-shadow: 0 2px 12px #000; }
+.scene .metiers { max-width: 52ch; margin-top: 8px; font-size: clamp(1rem, 2vw, 1.1875rem); font-weight: 500; text-wrap: balance; text-shadow: 0 2px 12px #000; }
+.scene .cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 22px; }
+.btn { display: inline-block; padding: 12px 26px; border: 0; border-radius: 3px; background: var(--rouge); color: #fff; font-weight: 600; text-decoration: none; transition: background .15s; }
+.btn:hover { background: #FF2E38; }
+.btn.clair { background: rgba(120, 120, 120, .45); }
+.btn.clair:hover { background: rgba(160, 160, 160, .55); }
+
+/* À l'affiche : grande photo qui change seule, comme la page d'accueil d'un service de streaming */
+.une { position: relative; height: clamp(440px, 52vw, 620px); overflow: hidden; }
+.diapo { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .8s, visibility 0s .8s; }
+.diapo.actif { opacity: 1; visibility: visible; transition-delay: 0s; }
+.diapo img { position: absolute; top: 0; right: 0; width: 72%; height: 100%; max-width: none; object-fit: cover; -webkit-mask-image: linear-gradient(90deg, transparent, #000 38%); mask-image: linear-gradient(90deg, transparent, #000 38%); }
+.diapo.actif img { animation: lent 9s linear forwards; }
+@keyframes lent { to { transform: scale(1.07); } }
+.diapo .texte { position: absolute; left: max(24px, calc((100% - 1240px) / 2 + 24px)); bottom: 76px; width: min(460px, 52%); }
+.diapo h2 { font-size: clamp(3.5rem, 8vw, 6.5rem); text-shadow: 0 4px 24px #000; }
+.diapo p { margin-block: 8px 16px; font-size: 1.125rem; text-shadow: 0 2px 12px #000; }
+.commandes { position: absolute; left: max(24px, calc((100% - 1240px) / 2 + 24px)); bottom: 22px; display: flex; align-items: center; gap: 8px; }
+.seg { width: 56px; height: 28px; padding: 0; border: 0; background: none; }
+.seg i { display: block; height: 4px; background: rgba(255, 255, 255, .28); overflow: hidden; }
+.seg i::after { content: ""; display: block; height: 100%; background: var(--rouge); transform: scaleX(var(--a, 0)); transform-origin: left; }
+#une-pause { display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; border-radius: 3px; background: rgba(120, 120, 120, .45); }
+#une-pause svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* Progression de lecture et contact toujours à portée */
+.avance { position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0; height: 3px; z-index: 6; background: var(--rouge); transform: scaleX(var(--lu, 0)); transform-origin: left; pointer-events: none; }
+.flottant { position: fixed; left: calc(16px + env(safe-area-inset-left, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 6; box-shadow: 0 6px 20px rgba(0, 0, 0, .7); }
+
+/* Chiffres */
+.chiffres { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; padding-block: 56px; }
+.chiffre { min-width: 0; }
+.chiffre img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; object-position: 50% 22%; -webkit-mask-image: linear-gradient(#000 45%, transparent); mask-image: linear-gradient(#000 45%, transparent); margin-bottom: -22px; }
+.chiffre b { position: relative; display: block; font: 400 clamp(4rem, 9vw, 7rem)/.9 var(--display); color: var(--rouge); font-variant-numeric: tabular-nums; }
+.chiffre span { font: 400 1.5rem/1.1 var(--display); letter-spacing: .03em; }
+
+/* Blocs rouges empilés */
+.pile { position: relative; aspect-ratio: 1 / 1.02; max-width: 100%; }
+.pile .grand { position: absolute; inset: 0 13% 13% 0; background: var(--rouge); overflow: hidden; }
+.pile .grand img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.pile .petit { position: absolute; width: 38%; aspect-ratio: 1; display: grid; place-items: center; background: var(--rouge); box-shadow: -14px -14px 0 rgba(0, 0, 0, .45); transition: left .7s var(--ressort), top .7s var(--ressort); }
+.pile .petit svg { width: 54%; height: 54%; fill: none; stroke: #000; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Profil */
+.affiche { padding-block: clamp(40px, 7vw, 96px); }
+.affiche .cadre { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(32px, 6vw, 88px); align-items: center; }
+.affiche .pile .petit { left: 62%; top: 62%; }
+.affiche h2 { font-size: clamp(3rem, 8vw, 6.5rem); margin-bottom: 20px; text-wrap: balance; }
+.affiche p { color: var(--doux); max-width: 56ch; }
+
+/* Parcours */
+.parcours { padding-block: clamp(40px, 6vw, 72px); }
+.parcours .cadre { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(32px, 6vw, 88px); }
+.fixe { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); align-self: start; }
+.fixe .grand { background: linear-gradient(150deg, var(--rouge) 0%, #B30D15 100%); }
+.fixe .mot { position: absolute; left: 22px; right: 22px; top: 18px; font: 400 clamp(3rem, 7vw, 5.75rem)/.9 var(--display); color: #000; overflow-wrap: anywhere; }
+.fixe .pile[data-pos="a"] .petit { left: 62%; top: 62%; }
+.fixe .pile[data-pos="b"] .petit { left: 30%; top: 62%; }
+.fixe .pile[data-pos="c"] .petit { left: 0%; top: 62%; }
+.etape { min-height: 58vh; display: flex; flex-direction: column; justify-content: center; padding-block: 24px; opacity: .6; transition: opacity .35s; }
+.etape.actif { opacity: 1; }
+.etape .type { font: 400 1.375rem/1 var(--display); color: var(--rouge); letter-spacing: .05em; margin-bottom: 8px; }
+.etape h3 { font-size: clamp(2.75rem, 6.4vw, 5rem); }
+.etape .lieu { font: 400 1.5rem/1.15 var(--display); letter-spacing: .03em; margin-block: 8px 10px; }
+.etape p:not(.type, .lieu) { color: var(--doux); max-width: 54ch; }
+
+/* Savoir-faire */
+.savoir { padding-block: clamp(48px, 6vw, 72px); }
+.savoir h2, .bref h2, .realisations h2 { font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 16px; }
+.filtres { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.filtres button { padding: 7px 14px; border: 1px solid var(--ligne); border-radius: 3px; background: var(--gris); font-weight: 500; }
+.filtres button:hover { border-color: var(--blanc); }
+.filtres button[aria-pressed="true"] { background: var(--rouge); border-color: var(--rouge); color: #fff; }
+.rangee { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(214px, 1fr); gap: 10px; overflow-x: auto; padding-block: 10px; }
+.metier { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 18px 16px; min-height: 250px; background: var(--gris); border-top: 4px solid var(--rouge); transition: transform .25s var(--ressort), background .2s, opacity .2s; }
+.metier:hover { transform: scale(1.03); background: #1E1E1E; }
+.metier.eteint { opacity: .25; }
+.metier h3 { font-size: 2.125rem; }
+.metier p { color: var(--doux); font-size: 1rem; line-height: 1.45; }
+.metier span { margin-top: auto; color: var(--rouge); font-weight: 600; font-size: .9375rem; }
+
+/* En bref */
+.bref { padding-bottom: clamp(40px, 6vw, 72px); }
+.fiche { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 20px 24px; margin: 0; }
+.fiche dt { color: var(--doux); font-size: .9375rem; }
+.fiche dd { margin: 0; font: 400 1.625rem/1.1 var(--display); letter-spacing: .02em; }
+
+/* Réalisations (visible dès que PROJETS contient une entrée) */
+.realisations { padding-block: clamp(32px, 5vw, 64px); }
+#univers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 16px; }
+.univers:not(.mini) { grid-column: 1 / -1; }
+.univers { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px; align-items: stretch; padding-block: 18px; }
+.carte { display: flex; flex-direction: column; justify-content: space-between; gap: 16px; padding: 16px; background: var(--rouge); color: #000; }
+.carte svg { width: 44px; height: 44px; fill: none; stroke: #000; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.carte h3 { font-size: clamp(2.25rem, 4vw, 3rem); }
+.carte p { font-weight: 500; font-size: .9375rem; line-height: 1.35; margin-top: 6px; }
+.piste { position: relative; min-width: 0; }
+.bande { display: flex; gap: 8px; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none; }
+.bande::-webkit-scrollbar { display: none; }
+.vue { flex: none; display: block; padding: 0; border: 0; background: #000; overflow: hidden; }
+.vue img { display: block; width: auto; height: clamp(250px, 30vw, 360px); max-width: none; transition: transform .35s var(--ressort); }
+.vue:hover img { transform: scale(1.04); }
+.mini.univers { grid-template-columns: minmax(0, 1fr); gap: 8px; align-content: start; }
+.mini .carte { flex-direction: row; align-items: center; justify-content: flex-start; min-height: 88px; padding: 10px 12px; }
+.mini .carte svg { flex: none; width: 34px; height: 34px; }
+.mini .carte h3 { font-size: 2rem; }
+.mini .vue { flex: 1 1 0; min-width: 0; }
+.mini .vue img { width: 100%; height: auto; max-width: 100%; aspect-ratio: 2 / 3; object-fit: cover; object-position: top; }
+.fleche { position: absolute; top: 50%; translate: 0 -50%; width: 44px; height: 72px; border: 0; background: rgba(0, 0, 0, .68); font: 400 2rem/1 var(--display); }
+.fleche:hover { background: var(--rouge); }
+.fleche.g { left: 0; }
+.fleche.d { right: 0; }
+
+/* Agrandissement */
+#loupe { width: 100vw; max-width: 100vw; height: 100dvh; max-height: 100dvh; margin: 0; padding: 0; border: 0; background: rgba(0, 0, 0, .95); color: var(--blanc); }
+#loupe::backdrop { background: #000; }
+#loupe[open] { display: grid; grid-template-rows: minmax(0, 1fr) auto; }
+#loupe figure { margin: 0; min-height: 0; display: grid; place-items: center; padding: 56px 12px 8px; }
+#loupe img { max-width: 100%; max-height: 100%; object-fit: contain; animation: zoom .3s var(--ressort); }
+@keyframes zoom { from { transform: scale(.94); opacity: .4; } }
+#loupe .bas { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 10px 16px calc(14px + env(safe-area-inset-bottom, 0px)); }
+#loupe-rang { color: var(--rouge); }
+#loupe .bas span { min-width: 0; text-align: center; font: 400 1.375rem/1.1 var(--display); letter-spacing: .03em; }
+#loupe button { width: 44px; height: 44px; flex: none; border: 0; border-radius: 3px; background: var(--gris); font: 400 1.625rem/1 var(--display); }
+#loupe button:hover { background: var(--rouge); }
+#loupe .fermer { position: absolute; top: calc(10px + env(safe-area-inset-top, 0px)); right: 22px; }
+
+/* Contact */
+.contact { position: relative; overflow: hidden; padding-block: clamp(64px, 9vw, 112px); text-align: center; }
+.contact .rideau { background: linear-gradient(0deg, var(--rouge) 0%, var(--sombre) 45%, #000 95%); animation: none; }
+.contact .cadre { position: relative; }
+.contact h2 { font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--blanc); text-shadow: 0 4px 24px #000; }
+.numero { font: 400 clamp(2.75rem, 11vw, 8rem)/1 var(--display); margin-top: 6px; text-shadow: 0 4px 24px #000; overflow-wrap: anywhere; }
+.mail { font-size: clamp(1.0625rem, 2.6vw, 1.5rem); font-weight: 500; overflow-wrap: anywhere; text-shadow: 0 2px 12px #000; }
+.contact .cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 24px; }
+#etat { min-height: 1.6em; margin-top: 10px; font-weight: 500; }
+footer { padding-block: 20px calc(20px + env(safe-area-inset-bottom, 0px)); text-align: center; font: 400 1.375rem/1 var(--display); letter-spacing: .08em; color: var(--rouge); }
+
+/* Entrée des diapositives : l'élément reste visible tant que l'animation n'a pas démarré */
+.entre { animation: monte .7s var(--ressort) backwards; }
+@keyframes monte { from { opacity: 0; transform: translateY(36px); } }
+
+@media (max-width: 760px) {
+  body { font-size: 1rem; }
+  .cadre { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(20px, calc(env(safe-area-inset-right, 0px) + 12px)); }
+  .chiffres { grid-template-columns: repeat(2, minmax(0, 1fr)); padding-block: 36px; }
+  #univers { grid-template-columns: minmax(0, 1fr); }
+  .univers { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .une { height: 520px; }
+  .diapo img { width: 100%; height: 76%; -webkit-mask-image: linear-gradient(#000 62%, transparent); mask-image: linear-gradient(#000 62%, transparent); }
+  .diapo .texte { left: 16px; width: auto; right: 20px; bottom: 56px; }
+  .commandes { left: 16px; bottom: 12px; }
+  .carte { flex-direction: row; align-items: center; justify-content: flex-start; padding: 10px 12px; }
+  .carte svg { flex: none; width: 34px; height: 34px; }
+  .fleche { display: none; }
+  .univers:not(.mini) .piste { margin-right: -20px; }
+  .barre strong { display: none; }
+  .barre nav { gap: 16px; }
+  .barre nav a { font-size: .9375rem; white-space: nowrap; }
+  .affiche .cadre, .parcours .cadre { grid-template-columns: minmax(0, 1fr); }
+  .affiche .pile { max-width: 320px; }
+  .fixe { z-index: 4; top: env(safe-area-inset-top, 0px); margin-inline: -16px -20px; padding-inline: 16px 20px; padding-block: 8px; background: #000; }
+  .fixe .pile { aspect-ratio: auto; height: 86px; }
+  .fixe .pile .grand { inset: 0 92px 0 0; }
+  .fixe .mot { left: 12px; right: 12px; top: 50%; transform: translateY(-50%); font-size: clamp(1.875rem, 9.4vw, 2.75rem); }
+  .fixe .pile[data-pos] .petit { left: auto; right: 0; top: 0; width: 86px; box-shadow: none; }
+  .etape { min-height: 0; padding-block: 22px; opacity: 1; }
+  .rangee { margin-right: -20px; padding-right: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .generique { display: none; }
+  .diapo { transition: none; }
+  .diapo.actif img { animation: none; }
+  #une-pause { display: none; }
+  .rideau { animation: none; }
+  .entre { animation: none; }
+  .pile .petit, .etape, .metier { transition: none; }
+  .metier:hover { transform: none; }
+}
+
+/* Bandeaux qui défilent */
+.scene-texte { display: grid; justify-items: center; gap: 6px; }
+.defilant { overflow: hidden; padding-block: 8px; background: var(--rouge); color: #000; rotate: -1.2deg; scale: 1.03; }
+.ruban { display: flex; width: max-content; font: 400 clamp(2.25rem, 5vw, 3.75rem)/1 var(--display); }
+.ruban span { padding-inline: 22px; white-space: nowrap; }
+.ruban span:nth-child(even) { color: transparent; -webkit-text-stroke: 1.5px #000; }
+.bandeau { display: grid; gap: 8px; padding-block: clamp(24px, 4vw, 48px); overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.bandeau > div { display: flex; gap: 8px; width: max-content; }
+.bandeau img { display: block; width: auto; height: clamp(130px, 16vw, 190px); max-width: none; }
+
+/* Toutes les animations ci-dessous disparaissent si le visiteur a demandé moins de mouvement */
+@media (prefers-reduced-motion: no-preference) {
+  /* Accueil */
+  .pellicule { animation: film 1.4s linear infinite; }
+  @keyframes film { from { background-position-y: var(--film, 0px); } to { background-position-y: calc(var(--film, 0px) + 24px); } }
+  .scene .rideau { translate: calc(var(--mx, 0) * var(--prof, 14px)) 0; transition: translate .5s ease-out; animation: tombe 1.1s var(--ressort) backwards, ondule 5s ease-in-out infinite alternate; animation-delay: var(--t), calc(var(--t) * -4); }
+  .scene .rideau:nth-of-type(2) { --prof: 26px; }
+  .scene .rideau:nth-of-type(3) { --prof: -18px; }
+  .scene .rideau:nth-of-type(4) { --prof: 34px; }
+  .scene .rideau:nth-of-type(5) { --prof: -10px; }
+  @keyframes ondule { to { scale: 1.22 1; } }
+  .scene > .faisceau { position: absolute; top: -20%; bottom: -20%; left: -30%; width: 24%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .13), transparent); rotate: 14deg; pointer-events: none; animation: balai 7s ease-in-out infinite alternate; }
+  @keyframes balai { to { translate: 620% 0; } }
+  .mono { translate: calc(var(--mx, 0) * -12px) calc(var(--my, 0) * -8px); transition: translate .5s ease-out; animation: arrive 1s var(--ressort) var(--base, .2s) backwards, lueur 3.2s ease-in-out infinite alternate; }
+  @keyframes arrive { from { opacity: 0; scale: 1.7; } }
+  @keyframes lueur { to { filter: drop-shadow(0 0 34px rgba(232, 19, 29, .85)); } }
+  .mot-l { display: inline-block; overflow: hidden; vertical-align: bottom; padding-block: .08em; margin-block: -.08em; }
+  .scene .l { display: inline-block; animation: lettre .75s var(--ressort) backwards; animation-delay: calc(var(--base, .2s) + .25s + var(--i) * 30ms); }
+  @keyframes lettre { from { translate: 0 115%; rotate: 8deg; } }
+  .scene .sous, .scene .metiers, .scene .cta { animation: monte .7s var(--ressort) backwards; }
+  .scene .sous { animation-delay: calc(var(--base, .2s) + .9s); }
+  .scene .metiers { animation-delay: calc(var(--base, .2s) + 1.02s); }
+  .scene .cta { animation-delay: calc(var(--base, .2s) + 1.14s); }
+
+  /* Boutons */
+  .btn:not(.flottant) { position: relative; overflow: hidden; }
+  .btn:not(.flottant)::after { content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .45), transparent); transform: skewX(-20deg); pointer-events: none; }
+  .btn:not(.flottant):hover::after { animation: eclat .7s ease-out; }
+  .scene .btn:first-child::after { animation: eclat 3.6s ease-in-out infinite; }
+  @keyframes eclat { to { left: 130%; } }
+  .flottant { animation: pouls 2.2s ease-out infinite; }
+  @keyframes pouls { from { box-shadow: 0 0 0 0 rgba(232, 19, 29, .75); } to { box-shadow: 0 0 0 20px rgba(232, 19, 29, 0); } }
+
+  /* Bandeaux */
+  .ruban { animation: ruban 24s linear infinite; }
+  @keyframes ruban { to { transform: translateX(-50%); } }
+  .bandeau > div { animation: ruban 46s linear infinite; }
+  .bandeau > div:nth-child(2) { animation-direction: reverse; animation-duration: 58s; }
+  .bandeau:hover > div { animation-play-state: paused; }
+
+  /* Carrousel */
+  .diapo.actif .texte > * { animation: monte .7s var(--ressort) backwards; }
+  .diapo.actif .texte > :nth-child(2) { animation-delay: .12s; }
+  .diapo.actif .texte > :nth-child(3) { animation-delay: .24s; }
+
+  /* Parcours */
+  #mot.change { animation: mot .55s var(--ressort); }
+  @keyframes mot { from { opacity: 0; translate: 0 70%; clip-path: inset(0 0 100% 0); } to { clip-path: inset(-20% 0 -20% 0); } }
+  .petit.pop svg { animation: pop .6s var(--ressort); }
+  @keyframes pop { from { scale: .2; rotate: -30deg; } }
+  .fixe .grand::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, .22) 50%, transparent 60%); background-size: 260% 100%; animation: reflet 4.5s ease-in-out infinite; pointer-events: none; }
+  @keyframes reflet { from { background-position: 130% 0; } to { background-position: -40% 0; } }
+  .etape.actif .type, .etape.actif h3, .etape.actif .lieu, .etape.actif .lieu + p { animation: glisse .6s var(--ressort) backwards; }
+  .etape.actif h3 { animation-delay: .07s; }
+  .etape.actif .lieu { animation-delay: .14s; }
+  .etape.actif .lieu + p { animation-delay: .21s; }
+  @keyframes glisse { from { opacity: 0; translate: 44px 0; } }
+
+  /* Survol en 3D */
+  .vue, .metier { transform: perspective(800px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .2s ease-out, background .2s, opacity .2s; }
+  .metier:hover { transform: perspective(800px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(1.04); box-shadow: 0 14px 34px rgba(232, 19, 29, .28); }
+  .vue { position: relative; }
+  .vue::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(232, 19, 29, .38), transparent 58%); opacity: 0; transition: opacity .2s; pointer-events: none; }
+  .vue:hover::after { opacity: 1; }
+  .curseur { position: fixed; left: -44px; top: -44px; z-index: 14; width: 88px; height: 88px; display: grid; place-items: center; border-radius: 50%; background: var(--rouge); color: #fff; font: 400 1.125rem/1 var(--display); letter-spacing: .04em; pointer-events: none; opacity: 0; scale: .4; transition: opacity .2s, scale .25s var(--ressort); }
+  .curseur.voit { opacity: .94; scale: 1; }
+
+  /* Rideau rouge entre deux sections */
+  .volet { position: fixed; inset: 0; z-index: 15; display: grid; grid-template-columns: repeat(7, 1fr); pointer-events: none; visibility: hidden; }
+  .volet.joue { visibility: visible; }
+  .volet i { background: var(--rouge); translate: 0 101%; }
+  .volet i:nth-child(even) { background: var(--sombre); }
+  .volet.joue i { animation: balaye .95s cubic-bezier(.7, 0, .3, 1) both; animation-delay: calc(var(--r) * 35ms); }
+  @keyframes balaye { 0% { translate: 0 101%; } 45%, 55% { translate: 0 0; } 100% { translate: 0 -101%; } }
+
+  /* Contact */
+  .numero .l { display: inline-block; animation: vague 5s ease-in-out infinite; animation-delay: calc(var(--i) * 70ms); }
+  @keyframes vague { 0%, 14%, 100% { translate: 0 0; color: inherit; } 7% { translate: 0 -11%; color: var(--rouge); } }
+
+  /* Apparitions liées au défilement */
+  @supports (animation-timeline: view()) {
+    .entre { animation: none; }
+    .scene { view-timeline-name: --accueil; }
+    .scene-texte { animation: vue-sort linear both; animation-timeline: --accueil; animation-range: exit 0% exit 100%; }
+    @keyframes vue-sort { to { opacity: 0; translate: 0 -90px; scale: .92; } }
+
+    .savoir h2, .bref h2, .realisations h2, .affiche h2, .contact h2 { animation: vue-titre linear both; animation-timeline: view(); animation-range: entry 0% cover 24%; }
+    @keyframes vue-titre { from { opacity: 0; translate: 0 .55em; clip-path: inset(0 0 100% 0); } to { clip-path: inset(-12% -6% -12% -6%); } }
+
+    .chiffre { animation: vue-monte linear both; animation-timeline: view(); animation-range: entry calc(var(--n) * 9%) cover 26%; }
+    .chiffre:nth-child(1) { --n: 0; }
+    .chiffre:nth-child(2) { --n: 1; }
+    .chiffre:nth-child(3) { --n: 2; }
+    .chiffre:nth-child(4) { --n: 3; }
+    @keyframes vue-monte { from { opacity: 0; translate: 0 74px; } }
+
+    .affiche { view-timeline-name: --profil; }
+    .affiche .grand { animation: vue-volet linear both; animation-timeline: --profil; animation-range: entry 8% cover 38%; }
+    @keyframes vue-volet { from { clip-path: inset(0 100% 0 0); translate: -46px 0; } to { clip-path: inset(0 0 0 0); } }
+    .affiche .grand img { height: 118%; max-width: none; animation: vue-glisse linear both; animation-timeline: --profil; }
+    @keyframes vue-glisse { to { translate: 0 -15%; } }
+    .affiche .petit { animation: vue-petit linear both; animation-timeline: --profil; animation-range: entry 22% cover 42%; }
+    @keyframes vue-petit { from { scale: 0; rotate: -28deg; } }
+    .affiche p { animation: vue-monte linear both; animation-timeline: view(); animation-range: entry 0% cover 26%; }
+
+    .univers:not(.mini) .carte { animation: vue-gauche linear both; animation-timeline: view(); animation-range: entry 5% cover 30%; }
+    @keyframes vue-gauche { from { opacity: 0; translate: -90px 0; } }
+    .piste { animation: vue-droite linear both; animation-timeline: view(); animation-range: entry 5% cover 32%; }
+    @keyframes vue-droite { from { opacity: 0; translate: 110px 0; } }
+    .mini { animation: vue-monte linear both; animation-timeline: view(); animation-range: entry calc(var(--n, 0) * 10%) cover 26%; }
+    .mini .piste { animation: none; }
+    .mini:nth-child(3) { --n: 1; }
+    .mini:nth-child(4) { --n: 2; }
+
+    .savoir { view-timeline-name: --savoir; }
+    .metier { animation: vue-carte linear both; animation-timeline: --savoir; animation-range: entry calc(8% + var(--n) * 9%) entry calc(46% + var(--n) * 9%); }
+    .metier:nth-child(1) { --n: 0; }
+    .metier:nth-child(2) { --n: 1; }
+    .metier:nth-child(3) { --n: 2; }
+    .metier:nth-child(4) { --n: 3; }
+    .metier:nth-child(5) { --n: 4; }
+    @keyframes vue-carte { from { opacity: 0; translate: 0 70px; rotate: x 24deg; } }
+
+    .fiche > div { animation: vue-monte linear both; animation-timeline: view(); animation-range: entry 0% cover 22%; }
+
+    .contact { view-timeline-name: --contact; }
+    .contact .rideau { transform-origin: bottom; animation: vue-rideau linear both; animation-timeline: --contact; animation-range: entry 0% cover 48%; }
+    @keyframes vue-rideau { from { scale: 1 0; } }
+    .numero { animation: vue-grand linear both; animation-timeline: view(); animation-range: entry 0% cover 34%; }
+    @keyframes vue-grand { from { opacity: 0; scale: .72; } }
+  }
+}
+@media (max-width: 760px) and (prefers-reduced-motion: no-preference) {
+  .etape.actif .type, .etape.actif h3, .etape.actif .lieu, .etape.actif .lieu + p { animation: none; }
+}
+</style>
+</head>
+<body>
+
+
+<section class="generique" id="generique" aria-label="Générique d'ouverture" hidden>
+  <div class="g-bandes" aria-hidden="true"><i style="--r:3"></i><i style="--r:1"></i><i style="--r:0"></i><i style="--r:2"></i><i style="--r:1"></i><i style="--r:3"></i><i style="--r:4"></i></div>
+  <img class="g-photo" src="realisations/masa-02.jpg" alt="">
+  <img class="g-photo" src="realisations/portrait-02.jpg" alt="">
+  <img class="g-photo" src="realisations/masa-01.jpg" alt="">
+  <img class="g-photo" src="realisations/mariage-02.jpg" alt="">
+  <img class="g-photo" src="realisations/masa-06.jpg" alt="">
+  <div class="g-teinte" id="g-teinte" hidden></div>
+  <div class="g-coupe" id="g-coupe"></div>
+  <div class="g-carton" id="g-carton" hidden><p class="g-nom" id="g-nom"></p><p class="g-role" id="g-role"></p></div>
+  <div class="g-depart" id="g-depart">
+    <b aria-hidden="true">A</b>
+    <button class="btn" id="g-lancer" type="button">Lancer le générique avec le son</button>
+    <p>10 secondes</p>
+  </div>
+  <button id="g-son" type="button" aria-pressed="false" hidden>Couper le son</button>
+  <button id="passer" type="button">Passer le générique</button>
+</section>
+<script>
+// Bande-son originale, synthétisée dans le navigateur : nappe grave, un coup à chaque carton, montée, accord final, ouverture
+function composerGenerique(ctx, sortie, coupes, tFinal, tFin) {
+  const sr = ctx.sampleRate;
+  const bruit = ctx.createBuffer(1, sr * 2, sr);
+  const b = bruit.getChannelData(0);
+  for (let i = 0; i < b.length; i++) b[i] = Math.random() * 2 - 1;
+  const reponse = ctx.createBuffer(2, sr * 3, sr);
+  for (let c = 0; c < 2; c++) {
+    const d = reponse.getChannelData(c);
+    for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / d.length) ** 3.2;
+  }
+  const salle = ctx.createConvolver();
+  salle.buffer = reponse;
+  const envoi = ctx.createGain();
+  envoi.gain.value = .3;
+  envoi.connect(salle);
+  salle.connect(sortie);
+  const relier = n => { n.connect(sortie); n.connect(envoi); };
+
+  function enveloppe(g, t, attaque, volume, chute) {
+    g.gain.setValueAtTime(.0001, t);
+    g.gain.exponentialRampToValueAtTime(volume, t + attaque);
+    g.gain.exponentialRampToValueAtTime(.0001, t + attaque + chute);
+  }
+  function coup(t, volume) {
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.frequency.setValueAtTime(140, t);
+    o.frequency.exponentialRampToValueAtTime(36, t + .3);
+    enveloppe(g, t, .006, volume, .8);
+    o.connect(g);
+    relier(g);
+    o.start(t);
+    o.stop(t + 1);
+  }
+  function souffle(t, duree, de, vers, volume) {
+    const n = ctx.createBufferSource(), f = ctx.createBiquadFilter(), g = ctx.createGain();
+    n.buffer = bruit;
+    n.loop = true;
+    f.type = "bandpass";
+    f.Q.value = 1.1;
+    f.frequency.setValueAtTime(de, t);
+    f.frequency.exponentialRampToValueAtTime(vers, t + duree);
+    g.gain.setValueAtTime(.0001, t);
+    g.gain.exponentialRampToValueAtTime(volume, t + duree * .7);
+    g.gain.exponentialRampToValueAtTime(.0001, t + duree);
+    n.connect(f);
+    f.connect(g);
+    relier(g);
+    n.start(t);
+    n.stop(t + duree + .05);
+  }
+
+  // Nappe grave qui s'ouvre jusqu'au carton final
+  const debut = coupes[0];
+  const filtre = ctx.createBiquadFilter(), nappe = ctx.createGain();
+  filtre.type = "lowpass";
+  filtre.frequency.setValueAtTime(130, debut);
+  filtre.frequency.exponentialRampToValueAtTime(1100, tFinal);
+  nappe.gain.setValueAtTime(.0001, debut);
+  nappe.gain.exponentialRampToValueAtTime(.16, debut + 2);
+  nappe.gain.setValueAtTime(.16, tFinal - .15);
+  nappe.gain.exponentialRampToValueAtTime(.0001, tFinal + .1);
+  filtre.connect(nappe);
+  relier(nappe);
+  [[55, -5], [55, 6], [82.41, 3]].forEach(([f, d]) => {
+    const o = ctx.createOscillator();
+    o.type = "sawtooth";
+    o.frequency.value = f;
+    o.detune.value = d;
+    o.connect(filtre);
+    o.start(debut);
+    o.stop(tFinal + .2);
+  });
+
+  // Un coup et un trait de souffle à chaque carton, une montée avant le final
+  coupes.slice(0, -1).forEach((t, i) => {
+    coup(t, .55 + i * .05);
+    souffle(Math.max(debut, t - .08), .38, 900, 3800, .09);
+  });
+  souffle(tFinal - 1.6, 1.6, 350, 6500, .22);
+
+  // Accord final
+  coup(tFinal, 1);
+  const accord = ctx.createBiquadFilter(), g = ctx.createGain();
+  accord.type = "lowpass";
+  accord.frequency.setValueAtTime(320, tFinal);
+  accord.frequency.exponentialRampToValueAtTime(2600, tFinal + .35);
+  accord.frequency.exponentialRampToValueAtTime(700, tFin);
+  g.gain.setValueAtTime(.0001, tFinal);
+  g.gain.exponentialRampToValueAtTime(.16, tFinal + .05);
+  g.gain.exponentialRampToValueAtTime(.07, tFin);
+  g.gain.exponentialRampToValueAtTime(.0001, tFin + .75);
+  accord.connect(g);
+  relier(g);
+  [110, 164.81, 220, 261.63, 329.63].forEach(f => {
+    const o = ctx.createOscillator();
+    o.type = "sawtooth";
+    o.frequency.value = f;
+    o.connect(accord);
+    o.start(tFinal);
+    o.stop(tFinal + 2.7);
+  });
+
+  // Les rideaux s'ouvrent : souffle descendant et scintillement
+  souffle(tFin - .2, 1.5, 4200, 260, .24);
+  [880, 1318.51, 1760].forEach((f, i) => {
+    const o = ctx.createOscillator(), v = ctx.createGain();
+    o.frequency.value = f;
+    enveloppe(v, tFin + i * .09, .25, .045, 2);
+    o.connect(v);
+    relier(v);
+    o.start(tFin + i * .09);
+    o.stop(tFin + i * .09 + 2.4);
+  });
+}
+
+// Le générique se joue une fois par visite, sauf si le visiteur a demandé moins de mouvement
+(() => {
+  const CARTONS = [
+    { nom: "Alassane Diarrassouba", role: "présente", d: 1800 },
+    { role: "Photographie", nom: "Alassane Diarrassouba", photo: 0, d: 1300 },
+    { role: "Cadrage", nom: "Alassane Diarrassouba", photo: 1, d: 1300 },
+    { role: "Montage vidéo", nom: "Alassane Diarrassouba", photo: 2, d: 1300 },
+    { role: "Infographie", nom: "Alassane Diarrassouba", photo: 3, d: 1300 },
+    { role: "Community management", nom: "Alassane Diarrassouba", photo: 4, d: 1300 },
+    { nom: "A", role: "CV portfolio 2026", final: true, d: 1900 }
+  ];
+  const g = document.getElementById("generique");
+  const racine = document.documentElement;
+  let dejaVu = false;
+  try { dejaVu = !!sessionStorage.getItem("generique"); sessionStorage.setItem("generique", "1"); } catch {}
+  if (dejaVu || matchMedia("(prefers-reduced-motion: reduce)").matches) { g.remove(); return; }
+
+  g.hidden = false;
+  racine.classList.add("attente");
+  const carton = document.getElementById("g-carton"), coupe = document.getElementById("g-coupe");
+  const photos = g.querySelectorAll(".g-photo"), teinte = document.getElementById("g-teinte");
+  const boutonSon = document.getElementById("g-son");
+  let minuteur, termine = false, son = null;
+
+  // Les navigateurs n'autorisent le son qu'après un geste : il démarre au clic sur le bouton
+  function lancerSon() {
+    const Contexte = window.AudioContext || window.webkitAudioContext;
+    if (!Contexte) return null;
+    const ctx = new Contexte();
+    ctx.resume();
+    const volume = ctx.createGain(), limite = ctx.createDynamicsCompressor();
+    volume.connect(limite);
+    limite.connect(ctx.destination);
+    let t = ctx.currentTime + .02;
+    const coupes = CARTONS.map(c => { const debut = t; t += c.d / 1000; return debut; });
+    composerGenerique(ctx, volume, coupes, coupes[coupes.length - 1], t);
+    return {
+      couper(muet) { volume.gain.setTargetAtTime(muet ? 0 : 1, ctx.currentTime, .03); },
+      eteindre(apres) { setTimeout(() => ctx.close(), apres); },
+      fondu() { volume.gain.setTargetAtTime(0, ctx.currentTime, .1); this.eteindre(700); }
+    };
+  }
+
+  function terminer(naturel) {
+    if (termine) return;
+    termine = true;
+    clearTimeout(minuteur);
+    removeEventListener("keydown", clavier);
+    if (son) naturel ? son.eteindre(4200) : son.fondu();
+    g.classList.add("rideaux", "fin");
+    racine.classList.remove("attente");
+    setTimeout(() => g.remove(), 1300);
+  }
+  function clavier(e) { if (e.key === "Escape") terminer(false); }
+
+  function carte(i) {
+    if (i === CARTONS.length) return terminer(true);
+    const c = CARTONS[i];
+    document.getElementById("g-nom").textContent = c.nom;
+    document.getElementById("g-role").textContent = c.role;
+    photos.forEach((p, n) => p.classList.toggle("actif", n === c.photo));
+    teinte.hidden = c.photo === undefined;
+    carton.classList.toggle("final", !!c.final);
+    carton.classList.toggle("credit", c.photo !== undefined);
+    g.classList.toggle("rideaux", !!c.final);
+    [carton, coupe].forEach(x => { x.classList.remove("joue"); void x.offsetWidth; x.classList.add("joue"); });
+    minuteur = setTimeout(() => carte(i + 1), c.d);
+  }
+  document.getElementById("passer").addEventListener("click", () => terminer(false));
+  addEventListener("keydown", clavier);
+  document.getElementById("g-lancer").addEventListener("click", () => {
+    document.getElementById("g-depart").remove();
+    carton.hidden = false;
+    boutonSon.hidden = false;
+    son = lancerSon();
+    if (!son) boutonSon.hidden = true;
+    carte(0);
+  });
+  boutonSon.addEventListener("click", () => {
+    const muet = boutonSon.getAttribute("aria-pressed") !== "true";
+    boutonSon.setAttribute("aria-pressed", muet);
+    boutonSon.textContent = muet ? "Remettre le son" : "Couper le son";
+    son?.couper(muet);
+  });
+  document.getElementById("g-lancer").focus({ preventScroll: true });
+})();
+</script>
+<div class="pellicule" aria-hidden="true"></div>
+<div class="avance" aria-hidden="true"></div>
+<div class="volet" id="volet" aria-hidden="true"><i style="--r:0"></i><i style="--r:3"></i><i style="--r:1"></i><i style="--r:4"></i><i style="--r:2"></i><i style="--r:5"></i><i style="--r:3"></i></div>
+<div class="curseur" id="curseur" aria-hidden="true">Agrandir</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-tele" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="m8 3 4 4 4-4"/></symbol>
+  <symbol id="i-reseau" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2"/><path d="m12 16-2.6-2.6a1.8 1.8 0 0 1 2.6-2.5 1.8 1.8 0 0 1 2.6 2.5z"/></symbol>
+  <symbol id="i-photo" viewBox="0 0 24 24"><path d="M3 8h4l2-3h6l2 3h4v12H3z"/><circle cx="12" cy="13" r="3.6"/></symbol>
+  <symbol id="i-diplome" viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11.5V17c3.5 2.6 8.5 2.6 12 0v-5.5"/></symbol>
+  <symbol id="i-livre" viewBox="0 0 24 24"><path d="M12 6c-2-1.6-5-2-9-2v15c4 0 7 .4 9 2 2-1.6 5-2 9-2V4c-4 0-7 .4-9 2z"/><path d="M12 6v15"/></symbol>
+  <symbol id="i-coeur" viewBox="0 0 24 24"><path d="M12 20.5 4.2 12.6a5 5 0 0 1 7.1-7l.7.7.7-.7a5 5 0 0 1 7.1 7z"/></symbol>
+  <symbol id="i-personne" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4.5"/><path d="M3.5 21c1-5 4.300-7 8.500-7s7.500 2 8.500 7"/></symbol>
+  <symbol id="i-etoile" viewBox="0 0 24 24"><path d="m12 3 2.700 5.800 6.300.800-4.600 4.300 1.200 6.300-5.600-3.100-5.600 3.100 1.200-6.300L3 9.600l6.300-.800z"/></symbol>
+  <symbol id="i-clap" viewBox="0 0 24 24"><path d="M3 10h18v10H3z"/><path d="m3 10-.6-3.6L19.5 3l1 3.8z"/><path d="m7.5 5.6 2.2 3M13 4.4l2.2 3.2"/></symbol>
+</svg>
+
+<header class="barre">
+  <div class="cadre">
+    <strong aria-hidden="true">A</strong>
+    <nav aria-label="Sections du CV">
+      <a href="#realisations">Réalisations</a>
+      <a href="#parcours">Parcours</a>
+      <a href="#savoir-faire">Savoir-faire</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="scene">
+    <span class="rideau" style="--x:2%;--w:5%;--t:.5s"></span>
+    <span class="rideau" style="--x:10%;--w:9%;--t:.62s"></span>
+    <span class="rideau" style="--x:68%;--w:12%;--t:.56s"></span>
+    <span class="rideau" style="--x:86%;--w:4%;--t:.68s"></span>
+    <span class="rideau" style="--x:94%;--w:6%;--t:.74s"></span>
+    <span class="faisceau" aria-hidden="true"></span>
+    <div class="scene-texte">
+    <div class="mono" aria-hidden="true">A</div>
+    <h1>Alassane Diarrassouba</h1>
+    <p class="sous">CV portfolio 2026</p>
+    <p class="metiers">Photographe retoucheur, cadreur, monteur vidéo, infographiste et community manager à Abidjan</p>
+    <p class="cta">
+      <a class="btn" href="#realisations">Voir les réalisations</a>
+      <a class="btn clair" href="#contact">Me contacter</a>
+    </p>
+    </div>
+  </div>
+
+  <section class="une" id="une" aria-label="Réalisations à l'affiche">
+    <div id="diapos"></div>
+    <div class="commandes">
+      <span id="segments" style="display:flex;gap:8px"></span>
+      <button id="une-pause" type="button" aria-label="Mettre en pause"><svg viewBox="0 0 24 24" aria-hidden="true"><path id="une-forme" d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg></button>
+    </div>
+  </section>
+
+  <div class="cadre chiffres" data-entre>
+    <div class="chiffre"><img src="realisations/masa-02.jpg" alt="" width="1400" height="933"><b data-compte="3" data-fin="+">3+</b><span>Ans d'expérience</span></div>
+    <div class="chiffre"><img src="realisations/portrait-02.jpg" alt="" width="999" height="1400"><b data-compte="5">5</b><span>Métiers</span></div>
+    <div class="chiffre"><img src="realisations/mariage-02.jpg" alt="" width="720" height="1080"><b data-compte="4">4</b><span>Logiciels Adobe</span></div>
+    <div class="chiffre"><img src="realisations/masa-01.jpg" alt="" width="1400" height="933"><b data-compte="2">2</b><span>Langues</span></div>
+  </div>
+
+  <div class="defilant" aria-hidden="true"><div class="ruban" id="ruban"></div></div>
+
+  <section class="affiche">
+    <div class="cadre">
+      <div class="pile" data-entre>
+        <div class="grand"><img src="portrait-rouge.jpg" alt="Portrait d'Alassane Diarrassouba" width="796" height="900"></div>
+        <div class="petit"><svg aria-hidden="true"><use href="#i-clap"/></svg></div>
+      </div>
+      <div data-entre>
+        <h2>De la préparation à la diffusion.</h2>
+        <p>Professionnel de l'audiovisuel avec plus de 3 ans d'expérience, je conçois et réalise des contenus visuels et digitaux à forte valeur ajoutée. Rigoureux et méthodique, je m'adapte vite aux situations inédites. Je cherche aujourd'hui de nouveaux défis où apporter ma valeur ajoutée à vos projets.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="realisations" id="realisations">
+    <div class="cadre">
+      <h2>Réalisations</h2>
+      <div id="univers"></div>
+    </div>
+  </section>
+
+  <div class="bandeau" id="bandeau" aria-hidden="true"><div></div><div></div></div>
+
+  <section class="parcours" id="parcours">
+    <div class="cadre">
+      <div class="fixe">
+        <div class="pile" id="pile" data-pos="a">
+          <div class="grand"><div class="mot" id="mot">JAFA</div></div>
+          <div class="petit"><svg aria-hidden="true"><use id="icone" href="#i-clap"/></svg></div>
+        </div>
+      </div>
+      <div>
+        <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">Parcours</h2>
+        <article class="etape actif" data-mot="JAFA" data-icone="i-clap" data-pos="a">
+          <p class="type">Poste actuel</p>
+          <h3>JAFA Entreprise</h3>
+          <p class="lieu">En fonction actuellement</p>
+        </article>
+        <article class="etape" data-mot="JTV" data-icone="i-tele" data-pos="c">
+          <p class="type">Expérience</p>
+          <h3>Responsable technique</h3>
+          <p class="lieu">JTV, la télé autrement</p>
+          <p>Planification et mise en place de l'ensemble du matériel de tournage, en coordination avec l'équipe technique. Réalisation complète des émissions, de la préparation à la diffusion.</p>
+        </article>
+        <article class="etape" data-mot="Diamondock" data-icone="i-reseau" data-pos="b">
+          <p class="type">Expérience</p>
+          <h3>Community manager multimédia</h3>
+          <p class="lieu">Diamondock</p>
+          <p>Création et production de contenus visuels variés : photographie, réalisation vidéo, conception d'affiches et de visuels promotionnels. Gestion quotidienne des réseaux sociaux.</p>
+        </article>
+        <article class="etape" data-mot="Indépendant" data-icone="i-photo" data-pos="c">
+          <p class="type">Expérience</p>
+          <h3>Indépendant</h3>
+          <p class="lieu">À mon propre compte</p>
+          <p>Photographe retoucheur, cadreur, monteur vidéo et infographiste.</p>
+        </article>
+        <article class="etape" data-mot="BTS" data-icone="i-diplome" data-pos="b">
+          <p class="type">Formation, 2021 à 2022</p>
+          <h3>Communication visuelle</h3>
+          <p class="lieu">Admissible au BTS</p>
+          <p>École Supérieure Saint-Jean Marie Vianney, Yopougon.</p>
+        </article>
+        <article class="etape" data-mot="Bac A2" data-icone="i-livre" data-pos="a">
+          <p class="type">Formation, 2019 à 2020</p>
+          <h3>Baccalauréat série A2</h3>
+          <p class="lieu">Collège Nawa, Soubré</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="savoir" id="savoir-faire">
+    <div class="cadre">
+      <h2>Cinq métiers à l'affiche</h2>
+      <div class="filtres" id="filtres" role="group" aria-label="Filtrer par logiciel">
+        <button type="button" data-outil="" aria-pressed="true">Tous</button>
+        <button type="button" data-outil="Photoshop" aria-pressed="false">Photoshop</button>
+        <button type="button" data-outil="Premiere Pro" aria-pressed="false">Premiere Pro</button>
+        <button type="button" data-outil="Illustrator" aria-pressed="false">Illustrator</button>
+        <button type="button" data-outil="InDesign" aria-pressed="false">InDesign</button>
+      </div>
+      <div class="rangee">
+        <article class="metier" data-outils="Photoshop,Premiere Pro,Illustrator">
+          <h3>Community manager</h3>
+          <p>Gestion quotidienne des réseaux sociaux et production des contenus qui les alimentent.</p>
+          <span>Photoshop, Premiere Pro, Illustrator</span>
+        </article>
+        <article class="metier" data-outils="">
+          <h3>Cadreur</h3>
+          <p>Préparation du matériel de tournage et prise de vue, en coordination avec l'équipe technique.</p>
+          <span>Sur le plateau</span>
+        </article>
+        <article class="metier" data-outils="Photoshop">
+          <h3>Photographe retoucheur</h3>
+          <p>Prise de vue et retouche, de l'image brute au visuel final.</p>
+          <span>Photoshop</span>
+        </article>
+        <article class="metier" data-outils="Premiere Pro">
+          <h3>Monteur vidéo</h3>
+          <p>Montage et réalisation d'émissions et de vidéos, de la préparation à la diffusion.</p>
+          <span>Premiere Pro</span>
+        </article>
+        <article class="metier" data-outils="Photoshop,Illustrator,InDesign">
+          <h3>Infographiste</h3>
+          <p>Conception d'affiches et de visuels promotionnels.</p>
+          <span>Photoshop, Illustrator, InDesign</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bref">
+    <div class="cadre">
+      <h2>En bref</h2>
+      <dl class="fiche">
+        <div><dt>Âge</dt><dd>28 ans</dd></div>
+        <div><dt>Ville</dt><dd>Abobo, Abidjan</dd></div>
+        <div><dt>Français</dt><dd>Parfait</dd></div>
+        <div><dt>Anglais</dt><dd>Moyen</dd></div>
+        <div><dt>Loisirs</dt><dd>Musique, lecture, football</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <span class="rideau" style="--x:3%;--w:7%"></span>
+    <span class="rideau" style="--x:14%;--w:4%"></span>
+    <span class="rideau" style="--x:80%;--w:9%"></span>
+    <span class="rideau" style="--x:92%;--w:5%"></span>
+    <div class="cadre">
+      <h2>Parlons de votre projet</h2>
+      <p class="numero">+225 05 65 103 699</p>
+      <p class="mail">diarrassoubaalassane353@gmail.com</p>
+      <div class="cta">
+        <a class="btn" href="https://wa.me/2250565103699" target="_blank" rel="noopener">Écrire sur WhatsApp</a>
+        <button class="btn clair" type="button" data-copie="+225 05 65 103 699" data-ok="Numéro copié">Copier le numéro</button>
+        <button class="btn clair" type="button" data-copie="diarrassoubaalassane353@gmail.com" data-ok="E-mail copié">Copier l'e-mail</button>
+      </div>
+      <p id="etat" role="status"></p>
+    </div>
+  </section>
+</main>
+
+<footer>Certifié sincère</footer>
+<a class="btn flottant" id="flottant" href="https://wa.me/2250565103699" target="_blank" rel="noopener" hidden>WhatsApp</a>
+
+<dialog id="loupe" aria-label="Photo agrandie">
+  <button class="fermer" type="button" id="loupe-fermer" aria-label="Fermer">×</button>
+  <figure><img id="loupe-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""></figure>
+  <div class="bas">
+    <button type="button" id="loupe-prec" aria-label="Photo précédente">‹</button>
+    <span><b id="loupe-rang" style="font-weight:400"></b> <span id="loupe-titre"></span></span>
+    <button type="button" id="loupe-suiv" aria-label="Photo suivante">›</button>
+  </div>
+</dialog>
+
+<script>
+// Pour ajouter une photo : déposez-la dans realisations/ et ajoutez une ligne dans le bon univers (largeur et hauteur en pixels).
+const PROJETS = [
+  { nom: "MASA 2026", ligne: "Reportage événementiel, de la scène au public", icone: "i-clap", photos: [
+    ["masa-02", 1400, 933, "Grande scène et public, soirée du MASA 2026"],
+    ["masa-01", 1400, 933, "Le public filme le spectacle"],
+    ["masa-06", 1400, 933, "Échanges entre invités pendant la soirée"],
+    ["masa-03", 933, 1400, "Invitée en tenue MASA"],
+    ["masa-04", 1068, 1400, "Invitée dans l'espace d'accueil"],
+    ["masa-05", 1046, 1400, "Invité en chemise MASA"]
+  ] },
+  { nom: "Mariage", ligne: "Portraits de mariés, entre pose et naturel", icone: "i-coeur", photos: [
+    ["mariage-02", 720, 1080, "Portrait des mariés"],
+    ["mariage-01", 720, 1080, "Portrait de la mariée"]
+  ] },
+  { nom: "Portrait", ligne: "Portraits posés et mise en lumière", icone: "i-personne", photos: [
+    ["portrait-01", 999, 1400, "Portrait en costume vert devant un tableau"],
+    ["portrait-02", 999, 1400, "Portrait en costume vert, fond sombre"]
+  ] },
+  { nom: "Anniversaire", ligne: "Souvenirs de fête pris sur le vif", icone: "i-etoile", photos: [
+    ["anniversaire-01", 933, 1400, "Fête d'anniversaire, la reine du jour"],
+    ["anniversaire-02", 923, 1286, "Fête d'anniversaire, moment de joie"]
+  ] }
+];
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// Galerie : une rangée par univers
+const TOUTES = PROJETS.flatMap(u => u.photos.map(([f, l, h, titre]) => ({ src: `realisations/${f}.jpg`, l, h, titre })));
+let rang = 0;
+$("#univers").innerHTML = PROJETS.map((u, i) => `
+  <div class="univers${i ? " mini" : ""}" data-entre>
+    <div class="carte">
+      <svg aria-hidden="true"><use href="#${u.icone}"/></svg>
+      <div><h3>${u.nom}</h3><p>${u.ligne}</p></div>
+    </div>
+    <div class="piste">
+      <div class="bande">${u.photos.map(([f, l, h, titre]) => `<button class="vue" type="button" data-i="${rang++}" aria-label="Agrandir : ${titre}"><img src="realisations/${f}.jpg" alt="${titre}" width="${l}" height="${h}" loading="lazy"></button>`).join("")}</div>
+      <button class="fleche g" type="button" aria-label="Photos précédentes" hidden>‹</button>
+      <button class="fleche d" type="button" aria-label="Photos suivantes" hidden>›</button>
+    </div>
+  </div>`).join("");
+
+function majFleches() {
+  $$(".piste").forEach(p => {
+    const b = $(".bande", p), reste = b.scrollWidth - b.clientWidth;
+    $(".g", p).hidden = b.scrollLeft < 8;
+    $(".d", p).hidden = b.scrollLeft > reste - 8;
+  });
+}
+$$(".piste").forEach(p => {
+  const b = $(".bande", p);
+  $(".g", p).addEventListener("click", () => b.scrollBy({ left: -b.clientWidth * .8 }));
+  $(".d", p).addEventListener("click", () => b.scrollBy({ left: b.clientWidth * .8 }));
+  b.addEventListener("scroll", majFleches, { passive: true });
+});
+majFleches();
+addEventListener("resize", majFleches);
+addEventListener("load", majFleches);
+$$(".vue img").forEach(i => i.addEventListener("load", majFleches));
+
+// Agrandissement d'une photo
+const loupe = $("#loupe"), loupeImg = $("#loupe-img");
+let courant = 0;
+function montrer(i) {
+  courant = (i + TOUTES.length) % TOUTES.length;
+  const p = TOUTES[courant];
+  loupeImg.src = p.src;
+  loupeImg.alt = p.titre;
+  $("#loupe-titre").textContent = p.titre;
+  $("#loupe-rang").textContent = `${courant + 1} / ${TOUTES.length}`;
+  loupeImg.style.animation = "none";
+  void loupeImg.offsetWidth;
+  loupeImg.style.animation = "";
+}
+$("#univers").addEventListener("click", e => {
+  const v = e.target.closest(".vue");
+  if (!v) return;
+  montrer(+v.dataset.i);
+  loupe.showModal();
+});
+$("#loupe-prec").addEventListener("click", () => montrer(courant - 1));
+$("#loupe-suiv").addEventListener("click", () => montrer(courant + 1));
+$("#loupe-fermer").addEventListener("click", () => loupe.close());
+loupe.addEventListener("click", e => { if (e.target === loupe) loupe.close(); });
+loupe.addEventListener("keydown", e => {
+  if (e.key === "ArrowLeft") montrer(courant - 1);
+  if (e.key === "ArrowRight") montrer(courant + 1);
+});
+
+// La pellicule avance avec le défilement
+let prevu = false;
+addEventListener("scroll", () => {
+  if (prevu) return;
+  prevu = true;
+  requestAnimationFrame(() => {
+    const racine = document.documentElement;
+    racine.style.setProperty("--lu", scrollY / (racine.scrollHeight - innerHeight));
+    if (!calme) racine.style.setProperty("--film", -scrollY * .4 + "px");
+    prevu = false;
+  });
+}, { passive: true });
+
+// Le bloc rouge du parcours suit l'étape au centre de l'écran
+const pile = $("#pile"), mot = $("#mot"), icone = $("#icone");
+const suivi = new IntersectionObserver(entrees => entrees.forEach(e => {
+  if (!e.isIntersecting) return;
+  $$(".etape").forEach(x => x.classList.toggle("actif", x === e.target));
+  pile.dataset.pos = e.target.dataset.pos;
+  mot.textContent = e.target.dataset.mot;
+  icone.setAttribute("href", "#" + e.target.dataset.icone);
+  [mot, $(".petit", pile)].forEach((x, n) => {
+    const classe = n ? "pop" : "change";
+    x.classList.remove(classe);
+    void x.offsetWidth;
+    x.classList.add(classe);
+  });
+}), { rootMargin: "-48% 0px -48% 0px" });
+$$(".etape").forEach(e => suivi.observe(e));
+
+// Entrée des blocs et comptage des chiffres, une seule fois
+function compter(b) {
+  const fin = +b.dataset.compte, suffixe = b.dataset.fin || "", debut = performance.now();
+  (function pas(h) {
+    const p = Math.min(1, (h - debut) / 900);
+    b.textContent = Math.round(fin * (1 - (1 - p) ** 3)) + suffixe;
+    if (p < 1) requestAnimationFrame(pas);
+  })(debut);
+}
+const entree = new IntersectionObserver(entrees => entrees.forEach(e => {
+  if (!e.isIntersecting) return;
+  entree.unobserve(e.target);
+  e.target.classList.add("entre");
+  if (!calme) $$("[data-compte]", e.target).forEach(compter);
+}), { threshold: .12 });
+$$("[data-entre]").forEach(e => entree.observe(e));
+
+// Balayage de la photo agrandie sur téléphone
+let departX = null;
+loupe.addEventListener("touchstart", e => { departX = e.touches[0].clientX; }, { passive: true });
+loupe.addEventListener("touchend", e => {
+  const dx = e.changedTouches[0].clientX - departX;
+  if (Math.abs(dx) > 50) montrer(courant + (dx < 0 ? 1 : -1));
+});
+
+// À l'affiche
+const UNE = [
+  { photo: "masa-02", titre: "MASA 2026", ligne: "Reportage photo, de la grande scène au public.", pos: "50% 55%" },
+  { photo: "mariage-02", titre: "Mariage", ligne: "Des portraits qui gardent l'émotion du jour J.", pos: "50% 20%" },
+  { photo: "portrait-01", titre: "Portrait", ligne: "Mise en lumière et retouche, du shooting au visuel final.", pos: "50% 18%" }
+];
+const DUREE = 6000;
+$("#diapos").innerHTML = UNE.map((d, i) => `
+  <div class="diapo">
+    <img src="realisations/${d.photo}.jpg" alt="" style="object-position:${d.pos}"${i ? ' loading="lazy"' : ""}>
+    <div class="texte">
+      <h2>${d.titre}</h2>
+      <p>${d.ligne}</p>
+      <button class="btn clair" type="button" data-photo="${d.photo}">Agrandir la photo</button>
+    </div>
+  </div>`).join("");
+$("#segments").innerHTML = UNE.map(d => `<button class="seg" type="button" aria-label="Afficher ${d.titre}"><i></i></button>`).join("");
+const diapos = $$(".diapo"), segments = $$(".seg i");
+let une = 0, ecoule = 0, auto = !calme, enVue = true, avant = 0;
+function afficher(i) {
+  une = (i + UNE.length) % UNE.length;
+  ecoule = 0;
+  diapos.forEach((d, n) => d.classList.toggle("actif", n === une));
+  segments.forEach((s, n) => s.style.setProperty("--a", n < une || (calme && n === une) ? 1 : 0));
+}
+function tic(h) {
+  const d = Math.min(100, h - avant);
+  avant = h;
+  if (auto && enVue && !document.hidden && !loupe.open) {
+    ecoule += d;
+    segments[une].style.setProperty("--a", ecoule / DUREE);
+    if (ecoule >= DUREE) afficher(une + 1);
+  }
+  requestAnimationFrame(tic);
+}
+afficher(0);
+if (!calme) requestAnimationFrame(tic);
+new IntersectionObserver(e => { enVue = e[0].isIntersecting; }).observe($("#une"));
+$$(".seg").forEach((b, i) => b.addEventListener("click", () => afficher(i)));
+$("#une-pause").addEventListener("click", e => {
+  auto = !auto;
+  $("#une-forme").setAttribute("d", auto ? "M6 4h4.5v16H6zM13.5 4H18v16h-4.5z" : "M7 4v16l14-8z");
+  e.currentTarget.setAttribute("aria-label", auto ? "Mettre en pause" : "Reprendre");
+});
+$("#diapos").addEventListener("click", e => {
+  const b = e.target.closest("[data-photo]");
+  if (!b) return;
+  montrer(TOUTES.findIndex(p => p.src.includes(b.dataset.photo)));
+  loupe.showModal();
+});
+
+// Le bouton WhatsApp apparaît après l'accueil et s'efface devant la section Contact
+let apresAccueil = false, surContact = false;
+const majFlottant = () => { $("#flottant").hidden = !apresAccueil || surContact; };
+new IntersectionObserver(e => { apresAccueil = !e[0].isIntersecting; majFlottant(); }).observe($(".scene"));
+new IntersectionObserver(e => { surContact = e[0].isIntersecting; majFlottant(); }).observe($("#contact"));
+
+// Bandeaux qui défilent, en double pour une boucle sans raccord
+const METIERS = ["Photographe retoucheur", "Cadreur", "Monteur vidéo", "Infographiste", "Community manager", "Du tournage à la diffusion"];
+$("#ruban").innerHTML = [...METIERS, ...METIERS, ...METIERS, ...METIERS].map(m => `<span>${m}</span>`).join("");
+const IMAGES = ["masa-02", "portrait-02", "mariage-01", "masa-04", "masa-01", "portrait-01", "mariage-02", "masa-05", "masa-06", "masa-03"];
+$$("#bandeau > div").forEach((rang, n) => {
+  const liste = n ? [...IMAGES].reverse() : IMAGES;
+  rang.innerHTML = [...liste, ...liste].map(f => `<img src="realisations/${f}.jpg" alt="" loading="lazy">`).join("");
+});
+
+// Animations réservées aux visiteurs qui acceptent le mouvement
+if (!calme) {
+  function lettres(el) {
+    const texte = el.textContent;
+    let i = 0;
+    el.setAttribute("aria-label", texte);
+    el.innerHTML = texte.split(" ").map(m => `<span class="mot-l" aria-hidden="true">${[...m].map(c => `<span class="l" style="--i:${i++}">${c}</span>`).join("")}</span>`).join(" ");
+  }
+  $(".scene").style.setProperty("--base", ".25s");
+  lettres($(".scene h1"));
+  lettres($(".numero"));
+  $$(".numero .mot-l").forEach(m => { m.style.overflow = "visible"; });
+
+  // Rideau rouge quand on saute vers une section
+  $$('a[href^="#"]').forEach(a => a.addEventListener("click", e => {
+    e.preventDefault();
+    const volet = $("#volet");
+    volet.classList.remove("joue");
+    void volet.offsetWidth;
+    volet.classList.add("joue");
+    setTimeout(() => $(a.getAttribute("href")).scrollIntoView({ behavior: "instant" }), 430);
+    setTimeout(() => volet.classList.remove("joue"), 1200);
+  }));
+
+  // Effets à la souris, sur ordinateur seulement
+  if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    const scene = $(".scene");
+    scene.addEventListener("pointermove", e => {
+      scene.style.setProperty("--mx", (e.clientX / innerWidth - .5) * 2);
+      scene.style.setProperty("--my", (e.clientY / innerHeight - .5) * 2);
+    });
+    $$(".vue, .metier").forEach(el => {
+      el.addEventListener("pointermove", e => {
+        const r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        el.style.setProperty("--ry", (x - .5) * 11 + "deg");
+        el.style.setProperty("--rx", (.5 - y) * 11 + "deg");
+        el.style.setProperty("--gx", x * 100 + "%");
+        el.style.setProperty("--gy", y * 100 + "%");
+      });
+      el.addEventListener("pointerleave", () => {
+        el.style.setProperty("--ry", "0deg");
+        el.style.setProperty("--rx", "0deg");
+      });
+    });
+    const curseur = $("#curseur");
+    let cx = 0, cy = 0, vx = 0, vy = 0;
+    addEventListener("pointermove", e => {
+      vx = e.clientX;
+      vy = e.clientY;
+      curseur.classList.toggle("voit", !!e.target.closest?.(".vue"));
+    });
+    (function suit() {
+      cx += (vx - cx) * .18;
+      cy += (vy - cy) * .18;
+      curseur.style.transform = `translate(${cx}px, ${cy}px)`;
+      requestAnimationFrame(suit);
+    })();
+  }
+}
+
+// Filtre par logiciel
+$("#filtres").addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if (!b) return;
+  $$("#filtres button").forEach(x => x.setAttribute("aria-pressed", x === b));
+  const o = b.dataset.outil;
+  $$(".metier").forEach(m => m.classList.toggle("eteint", !!o && !m.dataset.outils.split(",").includes(o)));
+});
+
+// Copie du numéro et de l'e-mail
+$$("[data-copie]").forEach(b => b.addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(b.dataset.copie);
+    $("#etat").textContent = b.dataset.ok;
+  } catch {
+    const cible = $(b.dataset.copie.includes("@") ? ".mail" : ".numero");
+    getSelection().selectAllChildren(cible);
+    $("#etat").textContent = "Texte sélectionné : appuyez sur Ctrl+C pour le copier.";
+  }
+}));
+
+</script>
+
+</body>
+</html>
